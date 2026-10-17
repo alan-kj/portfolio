@@ -9,20 +9,23 @@ export default function Motion() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const items = document.querySelectorAll("[data-reveal]");
-    let io;
+    let observer: IntersectionObserver | undefined;
     if (reduce || !("IntersectionObserver" in window)) {
       items.forEach((el) => el.classList.add("in"));
     } else {
-      io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            observer?.unobserve(entry.target);
+          }
         });
       }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
-      items.forEach((el) => io.observe(el));
+      items.forEach((el) => observer?.observe(el));
     }
 
     return () => {
-      io?.disconnect();
+      observer?.disconnect();
       root.classList.remove("js");
     };
   }, []);

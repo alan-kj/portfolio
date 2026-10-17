@@ -7,14 +7,21 @@ import {
   Mail,
   Sparkles,
 } from "lucide-react";
+import type { ReactNode } from "react";
 import { Badge, Button, Card, Heading, Text } from "@radix-ui/themes";
 import { profile, projects, skills } from "./data";
 import Motion from "./Motion";
 import Typewriter from "./Typewriter";
 
-const CodeLine = ({ children }) => <span className="code-line">{children}</span>;
+function CodeLine({ children }: Readonly<{ children: ReactNode }>) {
+  return <span className="code-line">{children}</span>;
+}
 
-function SectionTitle({ eyebrow, id, children }) {
+function SectionTitle({ eyebrow, id, children }: Readonly<{
+  eyebrow: string;
+  id: string;
+  children: ReactNode;
+}>) {
   return (
     <div className="section-title" data-reveal>
       <Text as="span" className="eyebrow">{eyebrow}</Text>

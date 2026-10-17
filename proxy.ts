@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 
-export function proxy(request) {
+export function proxy(request: NextRequest): NextResponse {
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
   const isDevelopment = process.env.NODE_ENV === "development";
   const csp = [
