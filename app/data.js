@@ -2,6 +2,7 @@
 export const profile = {
   name: "Alan K J",
   role: "Software engineer",
+  roles: ["Software engineer", "Backend developer", "API & database builder", "Full-stack web developer"], // rotating text in the hero
   headline: "I build reliable backends and clean web apps.",
   intro: "I turn messy requirements into simple, well-tested software that stays easy to change.",
   about: [

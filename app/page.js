@@ -1,10 +1,14 @@
 import { profile, projects, skills } from "./data";
+import Motion from "./Motion";
+import Typewriter from "./Typewriter";
 
 const L = ({ i, children }) => <span className="ln" style={{ "--i": i }}>{children}</span>;
 
 export default function Home() {
   return (
     <>
+      <Motion />
+      <div className="progress" aria-hidden="true" />
       <div className="bg" aria-hidden="true"><div className="grid" /><i className="glow g1" /><i className="glow g2" /><i className="beam" /></div>
 
       <header className="bar">
@@ -21,11 +25,15 @@ export default function Home() {
       <main id="top" className="wrap">
         <section className="hero">
           <div>
-            <h1>{profile.name}</h1>
-            <p className="role">{profile.role}</p>
-            <p className="lead">{profile.headline}</p>
-            <p className="sub">{profile.intro}</p>
-            <div className="actions">
+            <h1 aria-label={profile.name}>
+              {profile.name.split(" ").map((w, i) => (
+                <span key={i} className="word" aria-hidden="true"><span style={{ "--w": i }}>{w}</span></span>
+              ))}
+            </h1>
+            <p className="role"><Typewriter words={profile.roles} /></p>
+            <p className="lead rise" style={{ "--d": 4 }}>{profile.headline}</p>
+            <p className="sub rise" style={{ "--d": 5 }}>{profile.intro}</p>
+            <div className="actions rise" style={{ "--d": 6 }}>
               <a className="btn primary" href="#projects">View projects</a>
               <a className="btn" href={profile.github}>GitHub profile</a>
             </div>
@@ -47,13 +55,13 @@ export default function Home() {
         </section>
 
         <section id="projects">
-          <h2>Projects</h2>
+          <h2 data-reveal>Projects</h2>
           <ul className="list">
-            {projects.map((p) => (
-              <li key={p.title} className="proj">
+            {projects.map((p, i) => (
+              <li key={p.title} className="proj" data-reveal style={{ "--i": i }}>
                 <span className="yr">{p.year}</span>
                 <div>
-                  <h3><a href={p.href}>{p.title}</a></h3>
+                  <h3><a href={p.href}>{p.title}<span className="arr" aria-hidden="true">↗</span></a></h3>
                   <p>{p.text}</p>
                 </div>
                 <span className="stack">{p.stack}</span>
@@ -64,23 +72,23 @@ export default function Home() {
 
         <section id="skills" className="two">
           <div>
-            <h2>About</h2>
-            {profile.about.map((t) => <p key={t} className="about">{t}</p>)}
+            <h2 data-reveal>About</h2>
+            {profile.about.map((t) => <p key={t} className="about" data-reveal>{t}</p>)}
           </div>
           <div>
-            <h2>Skills</h2>
+            <h2 data-reveal>Skills</h2>
             <dl className="skills">
               {skills.map((s) => (
-                <div key={s.group}><dt>{s.group}</dt><dd>{s.items}</dd></div>
+                <div key={s.group} data-reveal><dt>{s.group}</dt><dd>{s.items}</dd></div>
               ))}
             </dl>
           </div>
         </section>
 
         <section id="contact">
-          <h2>Contact</h2>
-          <p className="about">Want to talk about a project or a role? The best place to find me is GitHub.</p>
-          <p className="mail"><a href={profile.github}>{profile.githubLabel}</a></p>
+          <h2 data-reveal>Contact</h2>
+          <p className="about" data-reveal>Want to talk about a project or a role? The best place to find me is GitHub.</p>
+          <p className="mail" data-reveal><a href={profile.github}>{profile.githubLabel}</a></p>
           {profile.email && <p className="about"><a href={`mailto:${profile.email}`}>{profile.email}</a></p>}
         </section>
       </main>
