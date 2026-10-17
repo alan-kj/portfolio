@@ -23,9 +23,9 @@ export default function Typewriter({ words }) {
   }, [words]);
 
   return (
-    <>
-      <span className="sr">{words[0]}</span>
+    <span className="typewriter">
+      <span className="sr-only">{words[0]}</span>
       <span aria-hidden="true" className="tw">{text}<i className="caret" /></span>
-    </>
+    </span>
   );
 }

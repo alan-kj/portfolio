@@ -67,7 +67,7 @@ export default function Home() {
             <p className="lead rise">{profile.headline}</p>
             <p className="intro rise">{profile.intro}</p>
             <div className="hero-actions rise">
-              <Button asChild className="button-primary" size="3" radius="full">
+              <Button asChild className="button-primary button-shine" size="3" radius="full">
                 <a href="#projects">Explore my work <ArrowDown size={16} aria-hidden="true" /></a>
               </Button>
               <Button asChild className="button-secondary" size="3" variant="outline" radius="full">

@@ -20,14 +20,14 @@ export const metadata = {
     follow: true
   }
 };
-export const viewport = { width: "device-width", initialScale: 1, viewportFit: "cover", themeColor: "#0A0E1A", colorScheme: "dark" };
+export const viewport = { width: "device-width", initialScale: 1, viewportFit: "cover", themeColor: "#F7F9F6", colorScheme: "light" };
 export const dynamic = "force-dynamic";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body>
-        <Theme appearance="dark" accentColor="iris" grayColor="slate" radius="large" scaling="100%">
+        <Theme appearance="light" accentColor="green" grayColor="sage" radius="large" scaling="100%">
           {children}
         </Theme>
       </body>
