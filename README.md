@@ -1,7 +1,15 @@
-# Alan K J – Portfolio (Next.js)
+# Alan K J — Portfolio (Next.js)
 
-    npm install
-    npm run dev      # http://localhost:3000
+Install dependencies and start the local development server:
 
-Edit your name, projects, skills and links in `app/data.js`.
-Deploy for free on Vercel: push to GitHub and import the repo.
+```sh
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) to preview the site.
+
+Update the profile, projects, skills, and contact details in `app/data.js`.
+The interface uses Radix Themes and Lucide icons. A per-request nonce-based
+Content Security Policy and additional security headers are configured in
+`proxy.js` and `next.config.js`.
