@@ -12,6 +12,7 @@ import { Badge, Button, Card, Heading, Text } from "@radix-ui/themes";
 import { profile, projects, skills } from "./data";
 import Motion from "./Motion";
 import Typewriter from "./Typewriter";
+import { ThemeToggle } from "./ThemeProvider";
 
 function CodeLine({ children }: Readonly<{ children: ReactNode }>) {
   return <span className="code-line">{children}</span>;
@@ -52,6 +53,7 @@ export default function Home() {
             <a href="#projects">Work</a>
             <a href="#about">About</a>
             <a href="#contact" className="nav-contact">Get in touch <ArrowUpRight size={15} aria-hidden="true" /></a>
+            <ThemeToggle />
           </nav>
         </div>
       </header>

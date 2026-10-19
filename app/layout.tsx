@@ -1,10 +1,10 @@
 import { Schibsted_Grotesk, JetBrains_Mono } from "next/font/google";
 import type { Metadata, Viewport } from "next";
-import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
 import { profile } from "./data";
 import { siteUrl } from "./seo";
+import { ThemeProvider } from "./ThemeProvider";
 
 const sans = Schibsted_Grotesk({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
@@ -66,7 +66,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: "#F7F9F6",
-  colorScheme: "light",
+  colorScheme: "light dark",
 };
 export const dynamic = "force-dynamic";
 
@@ -78,9 +78,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body>
-        <Theme appearance="light" accentColor="green" grayColor="sage" radius="large" scaling="100%">
+        <ThemeProvider>
           {children}
-        </Theme>
+        </ThemeProvider>
       </body>
     </html>
   );
