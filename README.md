@@ -17,9 +17,16 @@ Content Security Policy and additional security headers are configured in
 The app is written in TypeScript and TSX, with CSS in `app/globals.css`.
 Search metadata, canonical URLs, `robots.txt`, and `sitemap.xml` use
 `https://alankj.vercel.app` as the public site URL. Set `NEXT_PUBLIC_SITE_URL`
-when deploying to a different domain. Verify the project with:
+when deploying to a different domain.
+
+ESLint checks TypeScript/TSX and Next.js conventions, Stylelint checks CSS, and
+Prettier formats supported source, configuration, JSON, and Markdown files.
+Run the checks and formatter with:
 
 ```sh
+npm run lint
+npm run format:check
+npm run format
 npm run typecheck
 npm run build
 ```

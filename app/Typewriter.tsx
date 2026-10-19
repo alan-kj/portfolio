@@ -44,7 +44,10 @@ export default function Typewriter({ words }: TypewriterProps) {
   return (
     <span className="typewriter">
       <span className="sr-only">{words[0]}</span>
-      <span aria-hidden="true" className="tw">{text}<i className="caret" /></span>
+      <span aria-hidden="true" className="tw">
+        {text}
+        <i className="caret" />
+      </span>
     </span>
   );
 }

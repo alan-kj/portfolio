@@ -1,4 +1,4 @@
-import { Schibsted_Grotesk, JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono, Schibsted_Grotesk, Space_Grotesk } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
@@ -7,6 +7,7 @@ import { siteUrl } from "./seo";
 import { ThemeProvider } from "./ThemeProvider";
 
 const sans = Schibsted_Grotesk({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-display", display: "swap" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
 
 export const metadata: Metadata = {
@@ -15,7 +16,8 @@ export const metadata: Metadata = {
     default: "Alan K J — Software Engineer",
     template: "%s | Alan K J",
   },
-  description: "Alan K J is a software engineer building reliable backends, APIs, and thoughtful web applications. Explore selected projects, technical skills, and get in touch.",
+  description:
+    "Alan K J is a software engineer building reliable backends, APIs, and thoughtful web applications. Explore selected projects, technical skills, and get in touch.",
   applicationName: "Alan K J Portfolio",
   keywords: [
     "Alan K J",
@@ -35,7 +37,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Alan K J — Software Engineer",
-    description: "Software engineer building reliable backends, APIs, and thoughtful web applications.",
+    description:
+      "Software engineer building reliable backends, APIs, and thoughtful web applications.",
     url: "/",
     siteName: "Alan K J Portfolio",
     locale: "en_US",
@@ -47,7 +50,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     title: "Alan K J — Software Engineer",
-    description: "Software engineer building reliable backends, APIs, and thoughtful web applications.",
+    description:
+      "Software engineer building reliable backends, APIs, and thoughtful web applications.",
   },
   robots: {
     index: true,
@@ -76,11 +80,9 @@ type RootLayoutProps = Readonly<{
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
       <body>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

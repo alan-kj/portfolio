@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useSyncExternalStore } from "react";
 import { Moon, Sun } from "lucide-react";
 import { Theme } from "@radix-ui/themes";
 
@@ -12,43 +12,72 @@ type ThemeContextValue = {
 };
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
+const themeChangeEvent = "portfolio-theme-change";
+let fallbackTheme: ColorTheme = "light";
+
+function getThemeSnapshot(): ColorTheme {
+  try {
+    const savedTheme = window.localStorage.getItem("color-theme");
+    if (savedTheme === "light" || savedTheme === "dark") {
+      fallbackTheme = savedTheme;
+    }
+  } catch (error) {
+    console.error("Unable to read the saved color theme.", error);
+  }
+
+  return fallbackTheme;
+}
+
+function subscribeToTheme(onChange: () => void) {
+  window.addEventListener("storage", onChange);
+  window.addEventListener(themeChangeEvent, onChange);
+
+  return () => {
+    window.removeEventListener("storage", onChange);
+    window.removeEventListener(themeChangeEvent, onChange);
+  };
+}
+
+function getServerThemeSnapshot(): ColorTheme {
+  return "light";
+}
 
 export function ThemeProvider({ children }: Readonly<{ children: React.ReactNode }>) {
-  const [colorTheme, setColorTheme] = useState<ColorTheme>("light");
-
-  useEffect(() => {
-    try {
-      const savedTheme = window.localStorage.getItem("color-theme");
-      if (savedTheme === "light" || savedTheme === "dark") {
-        setColorTheme(savedTheme);
-      }
-    } catch (error) {
-      console.error("Unable to read the saved color theme.", error);
-    }
-  }, []);
+  const colorTheme = useSyncExternalStore(
+    subscribeToTheme,
+    getThemeSnapshot,
+    getServerThemeSnapshot,
+  );
 
   useEffect(() => {
     document.documentElement.dataset.theme = colorTheme;
-    document.querySelector('meta[name="theme-color"]')?.setAttribute(
-      "content",
-      colorTheme === "dark" ? "#0c110e" : "#F7F9F6",
-    );
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", colorTheme === "dark" ? "#0c110e" : "#F7F9F6");
   }, [colorTheme]);
 
   function toggleTheme() {
     const nextTheme = colorTheme === "light" ? "dark" : "light";
-    setColorTheme(nextTheme);
+    fallbackTheme = nextTheme;
 
     try {
       window.localStorage.setItem("color-theme", nextTheme);
     } catch (error) {
       console.error("Unable to save the color theme.", error);
     }
+
+    window.dispatchEvent(new Event(themeChangeEvent));
   }
 
   return (
     <ThemeContext.Provider value={{ colorTheme, toggleTheme }}>
-      <Theme appearance={colorTheme} accentColor="green" grayColor="sage" radius="large" scaling="100%">
+      <Theme
+        appearance={colorTheme}
+        accentColor="green"
+        grayColor="sage"
+        radius="large"
+        scaling="100%"
+      >
         {children}
       </Theme>
     </ThemeContext.Provider>
