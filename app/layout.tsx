@@ -4,18 +4,18 @@ import { headers } from "next/headers";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { profile } from "./data";
+import Cursor from "./motion/Cursor";
 import Reveal from "./motion/Reveal";
 import { siteUrl } from "./seo";
 import "./styles/tokens.css";
 import "./styles/base.css";
-import "./styles/interim.css";
 import { ThemeProvider } from "./ThemeProvider";
 
 const body = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
 const head = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-bricolage",
-  axes: ["opsz", "wdth"],
+  axes: ["wdth"], // the width axis drives the hero; skipping optical size keeps the file ~40% smaller
   display: "swap",
 });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
@@ -119,6 +119,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       <body>
         <ThemeProvider>
           <Reveal />
+          <Cursor />
           <a className="skip-link" href="#main">
             Skip to content
           </a>

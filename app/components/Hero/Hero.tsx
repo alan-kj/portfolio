@@ -29,12 +29,12 @@ export default function Hero({ profile }: Readonly<{ profile: Profile }>) {
           <p className={styles.intro}>{profile.intro}</p>
           <div className={styles.actions}>
             <Magnetic>
-              <a className={styles.primary} href="#projects">
+              <a className="btn btn-primary" href="#projects">
                 Explore my work <ArrowDown size={16} aria-hidden="true" />
               </a>
             </Magnetic>
             <Magnetic>
-              <a className={styles.secondary} href={profile.github}>
+              <a className="btn btn-secondary" href={profile.github}>
                 <CodeXml size={16} aria-hidden="true" /> GitHub
               </a>
             </Magnetic>

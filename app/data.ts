@@ -68,7 +68,7 @@ export const profile: Profile = {
   ],
   github: "https://github.com/alan-kj",
   githubLabel: "github.com/alan-kj",
-  email: "", // add your email to show it in the contact section
+  email: "hello@example.com", // placeholder: replace with your address; clear it to show GitHub only
 };
 
 // Placeholder case-study text. Replace it per project with the real story.

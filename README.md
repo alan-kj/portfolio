@@ -9,12 +9,14 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to preview the site.
 
-Update the profile, projects, skills, and contact details in `app/data.ts`.
-The interface uses Radix Themes and Lucide icons. A per-request nonce-based
+Update the profile, projects, case studies, experience, skills, and contact
+details in `app/data.ts` (the text in there is placeholder). The interface uses
+plain CSS and Lucide icons. A per-request nonce-based
 Content Security Policy and additional security headers are configured in
 `proxy.ts` and `next.config.ts`.
 
-The app is written in TypeScript and TSX, with CSS in `app/globals.css`.
+The app is written in TypeScript and TSX, with design tokens and base styles in `app/styles/` and a CSS Module per
+component.
 Search metadata, canonical URLs, `robots.txt`, and `sitemap.xml` use
 `https://alankj.vercel.app` as the public site URL. Set `NEXT_PUBLIC_SITE_URL`
 when deploying to a different domain.
