@@ -3,7 +3,7 @@ import Contact from "./components/Contact/Contact";
 import Experience from "./components/Experience/Experience";
 import Hero from "./components/Hero/Hero";
 import WorkGrid from "./components/Work/WorkGrid";
-import { experience, metrics, profile, projects, skills } from "./data";
+import { education, experience, metrics, profile, projects, skills } from "./data";
 import PageTransition from "./motion/PageTransition";
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
 
         <WorkGrid projects={projects} />
 
-        <Experience items={experience} />
+        <Experience items={experience} education={education} />
 
         <About profile={profile} skills={skills} metrics={metrics} projects={projects} />
 

@@ -12,6 +12,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  agentRules: false, // stop `next dev` from generating AGENTS.md
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

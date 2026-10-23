@@ -41,6 +41,14 @@ export type Experience = {
   impact: readonly string[];
 };
 
+export type Education = {
+  degree: string;
+  institution: string;
+  university: string;
+  period: string;
+  location: string;
+};
+
 export type Metric = {
   value: string;
   label: string;
@@ -57,8 +65,8 @@ export const profile: Profile = {
   role: "Software engineer",
   status: {
     state: "available",
-    label: "Available for new work",
-    focus: "Backend APIs and PostgreSQL",
+    label: "Open to opportunities",
+    focus: "CSE @ SCET",
   }, // the pill in the hero; set state to "busy" when you're not taking work
   headline: "I build reliable backends and clean web apps.",
   intro: "I turn messy requirements into simple, well-tested software that stays easy to change.",
@@ -156,6 +164,16 @@ export const experience: Experience[] = [
     period: "2022 to 2024",
     summary: "Describe the work in a sentence.",
     impact: ["Add one result from this role."],
+  },
+];
+
+export const education: Education[] = [
+  {
+    degree: "B.Tech in Computer Science and Engineering",
+    institution: "Sahrdaya College of Engineering & Technology (Autonomous)",
+    university: "APJ Abdul Kalam Technological University (KTU)",
+    period: "2023 to 2027",
+    location: "Kodakara, Kerala",
   },
 ];
 

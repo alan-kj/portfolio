@@ -3,6 +3,22 @@
   margin-top: 48px;
 }
 
+/* The second list (education) sits under the work timeline with its own small heading. */
+.education {
+  margin-top: clamp(64px, 8vw, 96px);
+}
+
+.subhead {
+  font-family: var(--font-head);
+  font-size: var(--step-1);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.education .list {
+  margin-top: 32px;
+}
+
 /* The left border is the timeline rail; each entry hangs a marker on it. */
 .item {
   position: relative;
