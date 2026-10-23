@@ -1,0 +1,8 @@
+/* Padding widens the pull zone around the child without changing layout. */
+.magnetic {
+  display: inline-block;
+  padding: 16px;
+  margin: -16px;
+  transform: translate3d(var(--mag-x, 0), var(--mag-y, 0), 0);
+  transition: transform 350ms var(--ease-out);
+}

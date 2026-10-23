@@ -1,7 +1,13 @@
+export type Status = {
+  state: "available" | "busy";
+  label: string;
+  focus: string;
+};
+
 export type Profile = {
   name: string;
   role: string;
-  roles: readonly string[];
+  status: Status;
   headline: string;
   intro: string;
   about: readonly string[];
@@ -27,12 +33,11 @@ export type Skill = {
 export const profile: Profile = {
   name: "Alan K J",
   role: "Software engineer",
-  roles: [
-    "Software engineer",
-    "Backend developer",
-    "API & database builder",
-    "Full-stack web developer",
-  ], // rotating text in the hero
+  status: {
+    state: "available",
+    label: "Available for new work",
+    focus: "Backend APIs and PostgreSQL",
+  }, // the pill in the hero; set state to "busy" when you're not taking work
   headline: "I build reliable backends and clean web apps.",
   intro: "I turn messy requirements into simple, well-tested software that stays easy to change.",
   about: [

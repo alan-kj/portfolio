@@ -1,9 +1,9 @@
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Hero from "./components/Hero/Hero";
 import { profile, projects, skills } from "./data";
 import Reveal from "./motion/Reveal";
-import Typewriter from "./Typewriter";
 
 const navLinks = [
   { id: "projects", label: "Work" },
@@ -21,17 +21,7 @@ export default function Home() {
       <Header name={profile.name} links={navLinks} contactId="contact" />
 
       <main id="main" className="wrap">
-        <section id="top" className="hero" aria-labelledby="hero-title">
-          <h1 id="hero-title">{profile.name}</h1>
-          <p className="role">
-            <Typewriter words={profile.roles} />
-          </p>
-          <p className="lead">{profile.headline}</p>
-          <p className="intro">{profile.intro}</p>
-          <a className="button" href="#projects">
-            Explore my work <ArrowRight size={16} aria-hidden="true" />
-          </a>
-        </section>
+        <Hero profile={profile} />
 
         <section id="projects" className="block" aria-labelledby="projects-title">
           <h2 id="projects-title" data-reveal>

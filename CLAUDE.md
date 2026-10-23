@@ -21,7 +21,7 @@ There is no test suite. Verify changes with `lint`, `typecheck`, and `build`.
 Single-page Next.js 16 (App Router) portfolio, React 19, TypeScript, Radix Themes + Lucide icons. Everything lives in `app/`; there are no nested routes.
 
 - **Content is data-driven**: all profile, project, and skill content comes from `app/data.ts` (typed `Profile`/`Project`/`Skill`). Edit content there, not in `page.tsx`. `layout.tsx` metadata also reads from `profile`.
-- **Server vs. client**: `page.tsx` and `layout.tsx` are server components. Client islands are `ThemeProvider.tsx` (`ThemeProvider` + `ThemeToggle`), `Motion.tsx`, and `Typewriter.tsx`.
+- **Server vs. client**: `page.tsx` and `layout.tsx` are server components. Client islands are `ThemeProvider.tsx` (`ThemeProvider` + `ThemeToggle`), and `motion/Reveal.tsx`.
 - **Theming**: `ThemeProvider` stores the theme in `localStorage` (`color-theme`) via `useSyncExternalStore` (server snapshot is always `"light"`), sets `document.documentElement.dataset.theme`, updates the `theme-color` meta, and passes `appearance` to Radix `<Theme>`. Dark-mode styles in `globals.css` are written as `:root[data-theme="dark"] …` overrides; when adding styled elements, add matching dark overrides there.
 - **Scroll reveal**: `Motion.tsx` adds a `js` class to `<html>` and toggles `.in` on `[data-reveal]` elements via IntersectionObserver (respects `prefers-reduced-motion`). CSS only hides reveal elements under `.js`, so the page stays visible without JS.
 - **Styling**: one global stylesheet, `app/globals.css`, which also overrides Radix classes (e.g. `.rt-Button`, `.rt-Card`). Fonts are loaded via `next/font/google` and exposed as `--font-sans`, `--font-display`, `--font-mono`.
