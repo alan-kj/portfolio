@@ -12,6 +12,8 @@ export type Profile = {
   about: readonly string[];
   github: string;
   email: string;
+  resumeUrl: string; // "" hides every resume link
+  resumeFileName: string; // name the browser saves a same-site PDF as
 };
 
 type CaseStudySection = {
@@ -72,6 +74,8 @@ export const profile: Profile = {
     "I like working across the stack, from database design to the interface people actually touch.",
   ],
   github: "https://github.com/alan-kj",
+  resumeUrl: "/resume.pdf", // a file in public/, or a full URL if hosted elsewhere (Drive, Notion)
+  resumeFileName: "Alan_KJ_Resume.pdf",
   email: "hello@example.com", // placeholder: replace with your address; clear it to show GitHub only
 };
 

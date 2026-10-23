@@ -187,6 +187,16 @@
     background: var(--glass-strong);
   }
 
+  /* Downward-pointing icons (scroll, download) nudge down on hover. */
+  .btn-nudge {
+    flex: none;
+    transition: transform 250ms var(--ease-out);
+  }
+
+  .btn:hover .btn-nudge {
+    transform: translateY(2px);
+  }
+
   .theme-toggle {
     display: grid;
     width: 40px;

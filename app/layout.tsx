@@ -131,7 +131,12 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           </a>
           <Header name={profile.name} links={navLinks} contactId="contact" />
           {children}
-          <Footer name={profile.name} github={profile.github} />
+          <Footer
+            name={profile.name}
+            github={profile.github}
+            resumeUrl={profile.resumeUrl}
+            resumeFileName={profile.resumeFileName}
+          />
         </ThemeProvider>
       </body>
     </html>
