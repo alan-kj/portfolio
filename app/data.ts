@@ -33,6 +33,19 @@ export type Project = {
   href: string;
 };
 
+export type Experience = {
+  role: string;
+  org: string;
+  period: string;
+  summary: string;
+  impact: readonly string[];
+};
+
+export type Metric = {
+  value: string;
+  label: string;
+};
+
 export type Skill = {
   group: string;
   items: string;
@@ -124,3 +137,28 @@ export const skills: Skill[] = [
   { group: "Back end", items: "Node.js, REST APIs, PostgreSQL, Redis" },
   { group: "Tools", items: "Git, Docker, AWS, CI/CD" },
 ];
+
+// Placeholder experience, newest first. Replace it with your own history; the section hides if empty.
+export const experience: Experience[] = [
+  {
+    role: "Your role title",
+    org: "Company or team",
+    period: "2024 to now",
+    summary: "Say in a sentence what you owned and who you worked with.",
+    impact: [
+      "Add a result you can measure, such as a faster response time or fewer incidents.",
+      "Add a second result, such as a system you shipped or a process you improved.",
+    ],
+  },
+  {
+    role: "Your earlier role",
+    org: "Previous company or team",
+    period: "2022 to 2024",
+    summary: "Describe the work in a sentence.",
+    impact: ["Add one result from this role."],
+  },
+];
+
+// Optional headline figures for the skills bento, e.g. { value: "99.9%", label: "Uptime on Orbit API" }.
+// Leave it empty and the tiles show figures counted from `projects` instead.
+export const metrics: Metric[] = [];

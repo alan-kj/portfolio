@@ -1,0 +1,20 @@
+.intro {
+  display: grid;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.copy {
+  display: grid;
+  max-width: 56ch;
+  gap: 16px;
+  color: var(--muted);
+}
+
+@media (min-width: 900px) {
+  .intro {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: end;
+    gap: clamp(48px, 7vw, 112px);
+  }
+}

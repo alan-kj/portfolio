@@ -1,0 +1,93 @@
+.list {
+  display: grid;
+  margin-top: 48px;
+}
+
+/* The left border is the timeline rail; each entry hangs a marker on it. */
+.item {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  padding: 0 0 48px 28px;
+  border-left: 1px solid var(--line-strong);
+}
+
+.item:last-child {
+  padding-bottom: 0;
+}
+
+.item::before {
+  position: absolute;
+  top: 0.45em;
+  left: -5px;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--ink);
+  content: "";
+}
+
+/* The first entry is the current one. */
+.item:first-child::before {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.period {
+  color: var(--muted);
+  font-family: var(--font-code);
+  font-size: var(--step-s);
+}
+
+.role {
+  font-family: var(--font-head);
+  font-size: var(--step-2);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.org {
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.summary {
+  max-width: 56ch;
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+.impact {
+  display: grid;
+  max-width: 60ch;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.impact li {
+  position: relative;
+  padding-left: 20px;
+}
+
+.impact li::before {
+  position: absolute;
+  top: 0.7em;
+  left: 0;
+  width: 8px;
+  height: 2px;
+  background: var(--accent);
+  content: "";
+}
+
+@media (min-width: 900px) {
+  .item {
+    grid-template-columns: 11rem minmax(0, 1fr);
+    gap: 32px;
+    padding-left: 40px;
+  }
+
+  .period {
+    padding-top: 0.5em;
+  }
+}

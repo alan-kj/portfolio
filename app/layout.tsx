@@ -23,6 +23,7 @@ const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", dis
 // Runs before first paint so a returning visitor never sees the wrong theme.
 const navLinks = [
   { id: "projects", label: "Work" },
+  { id: "experience", label: "Experience" },
   { id: "about", label: "About" },
 ];
 

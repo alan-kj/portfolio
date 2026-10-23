@@ -1,4 +1,4 @@
-/* Temporary section styles. Each phase deletes the rules for the section it replaces. */
+/* Temporary styles for the contact section, replaced in Phase 6. */
 
 .button {
   display: inline-flex;
@@ -27,31 +27,8 @@
   line-height: 1;
 }
 
-.block > p,
-.about p {
+.block > p {
   max-width: 56ch;
   margin-top: 18px;
-  color: var(--muted);
-}
-
-.about {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-  gap: 48px;
-}
-
-.about dl div {
-  display: grid;
-  grid-template-columns: 8rem 1fr;
-  gap: 16px;
-  padding-block: 14px;
-  border-bottom: 1px solid var(--line);
-}
-
-.about dt {
-  font-weight: 600;
-}
-
-.about dd {
   color: var(--muted);
 }

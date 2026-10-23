@@ -14,9 +14,9 @@ export default function WorkGrid({ projects }: Readonly<{ projects: readonly Pro
   const range = years.length ? `${Math.min(...years)} to ${Math.max(...years)}` : "";
 
   return (
-    <section id="projects" className={styles.section} aria-labelledby="projects-title">
+    <section id="projects" className="band" aria-labelledby="projects-title">
       <div className={styles.header}>
-        <h2 id="projects-title" className={styles.heading} data-reveal>
+        <h2 id="projects-title" className="section-title" data-reveal>
           A few things I&apos;ve built
         </h2>
         {range && (
