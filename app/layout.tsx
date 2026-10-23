@@ -1,8 +1,8 @@
-import { JetBrains_Mono, Schibsted_Grotesk, Space_Grotesk } from "next/font/google";
-import type { Metadata, Viewport } from "next";
 import "@radix-ui/themes/styles.css";
-import "./globals.css";
+import type { Metadata, Viewport } from "next";
+import { JetBrains_Mono, Schibsted_Grotesk, Space_Grotesk } from "next/font/google";
 import { profile } from "./data";
+import "./globals.css";
 import { siteUrl } from "./seo";
 import { ThemeProvider } from "./ThemeProvider";
 

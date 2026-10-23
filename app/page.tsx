@@ -1,3 +1,4 @@
+import { Badge, Button, Card, Heading, Text } from "@radix-ui/themes";
 import {
   ArrowDown,
   ArrowRight,
@@ -8,11 +9,10 @@ import {
   Sparkles,
 } from "lucide-react";
 import type { ReactNode } from "react";
-import { Badge, Button, Card, Heading, Text } from "@radix-ui/themes";
 import { profile, projects, skills } from "./data";
 import Motion from "./Motion";
-import Typewriter from "./Typewriter";
 import { ThemeToggle } from "./ThemeProvider";
+import Typewriter from "./Typewriter";
 
 function CodeLine({ children }: Readonly<{ children: ReactNode }>) {
   return <span className="code-line">{children}</span>;
