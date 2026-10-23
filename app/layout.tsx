@@ -18,7 +18,13 @@ const head = Bricolage_Grotesque({
   axes: ["wdth"], // the width axis drives the hero; skipping optical size keeps the file ~40% smaller
   display: "swap",
 });
-const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
+// Only small labels use the mono face, all below the fold, so it should not compete for the first paint.
+const mono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+  preload: false,
+});
 
 // Runs before first paint so a returning visitor never sees the wrong theme.
 const navLinks = [

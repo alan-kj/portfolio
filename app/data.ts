@@ -6,17 +6,15 @@ export type Status = {
 
 export type Profile = {
   name: string;
-  role: string;
   status: Status;
   headline: string;
   intro: string;
   about: readonly string[];
   github: string;
-  githubLabel: string;
   email: string;
 };
 
-export type CaseStudySection = {
+type CaseStudySection = {
   heading: string;
   body: string;
 };
@@ -62,7 +60,6 @@ export type Skill = {
 // Edit this file to change the site content.
 export const profile: Profile = {
   name: "Alan K J",
-  role: "Software engineer",
   status: {
     state: "available",
     label: "Open to opportunities",
@@ -75,7 +72,6 @@ export const profile: Profile = {
     "I like working across the stack, from database design to the interface people actually touch.",
   ],
   github: "https://github.com/alan-kj",
-  githubLabel: "github.com/alan-kj",
   email: "hello@example.com", // placeholder: replace with your address; clear it to show GitHub only
 };
 
