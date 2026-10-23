@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 
 // Progressive enhancement for scroll reveals. The page remains visible without JavaScript.
-export default function Motion() {
+export default function Reveal() {
   useEffect(() => {
     const root = document.documentElement;
     root.classList.add("js");

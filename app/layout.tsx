@@ -1,14 +1,24 @@
-import "@radix-ui/themes/styles.css";
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Schibsted_Grotesk, Space_Grotesk } from "next/font/google";
+import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
+import { headers } from "next/headers";
 import { profile } from "./data";
-import "./globals.css";
 import { siteUrl } from "./seo";
+import "./styles/tokens.css";
+import "./styles/base.css";
+import "./styles/interim.css";
 import { ThemeProvider } from "./ThemeProvider";
 
-const sans = Schibsted_Grotesk({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
-const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-display", display: "swap" });
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
+const body = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
+const head = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-bricolage",
+  axes: ["opsz", "wdth"],
+  display: "swap",
+});
+const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
+
+// Runs before first paint so a returning visitor never sees the wrong theme.
+const themeScript = `try{var t=localStorage.getItem("color-theme");document.documentElement.dataset.theme=t==="light"?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}`;
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
@@ -69,8 +79,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#F7F9F6",
-  colorScheme: "light dark",
+  themeColor: "#0c1013",
+  colorScheme: "dark light",
 };
 export const dynamic = "force-dynamic";
 
@@ -78,9 +88,25 @@ type RootLayoutProps = Readonly<{
   children: React.ReactNode;
 }>;
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({ children }: RootLayoutProps) {
+  // proxy.ts puts the per-request nonce in the CSP header; reuse it for the theme script.
+  const csp = (await headers()).get("content-security-policy") ?? "";
+  const nonce = /'nonce-([^']+)'/.exec(csp)?.[1];
+
   return (
-    <html lang="en" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
+    <html
+      lang="en"
+      data-theme="dark"
+      className={`${body.variable} ${head.variable} ${mono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script
+          nonce={nonce}
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: themeScript }}
+        />
+      </head>
       <body>
         <ThemeProvider>{children}</ThemeProvider>
       </body>

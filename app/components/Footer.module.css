@@ -1,0 +1,29 @@
+.footer {
+  display: flex;
+  min-height: 96px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: var(--step-s);
+}
+
+.brand {
+  color: var(--text);
+  font-family: var(--font-head);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  transition: color 200ms var(--ease-out);
+}
+
+.link:hover {
+  color: var(--accent);
+}

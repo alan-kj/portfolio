@@ -2,7 +2,6 @@
 
 import { createContext, useContext, useEffect, useSyncExternalStore } from "react";
 import { Moon, Sun } from "lucide-react";
-import { Theme } from "@radix-ui/themes";
 
 type ColorTheme = "light" | "dark";
 
@@ -13,7 +12,7 @@ type ThemeContextValue = {
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 const themeChangeEvent = "portfolio-theme-change";
-let fallbackTheme: ColorTheme = "light";
+let fallbackTheme: ColorTheme = "dark";
 
 function getThemeSnapshot(): ColorTheme {
   try {
@@ -39,7 +38,7 @@ function subscribeToTheme(onChange: () => void) {
 }
 
 function getServerThemeSnapshot(): ColorTheme {
-  return "light";
+  return "dark";
 }
 
 export function ThemeProvider({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -53,7 +52,7 @@ export function ThemeProvider({ children }: Readonly<{ children: React.ReactNode
     document.documentElement.dataset.theme = colorTheme;
     document
       .querySelector('meta[name="theme-color"]')
-      ?.setAttribute("content", colorTheme === "dark" ? "#0c110e" : "#F7F9F6");
+      ?.setAttribute("content", colorTheme === "dark" ? "#0c1013" : "#eef0f2");
   }, [colorTheme]);
 
   function toggleTheme() {
@@ -70,17 +69,7 @@ export function ThemeProvider({ children }: Readonly<{ children: React.ReactNode
   }
 
   return (
-    <ThemeContext.Provider value={{ colorTheme, toggleTheme }}>
-      <Theme
-        appearance={colorTheme}
-        accentColor="green"
-        grayColor="sage"
-        radius="large"
-        scaling="100%"
-      >
-        {children}
-      </Theme>
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={{ colorTheme, toggleTheme }}>{children}</ThemeContext.Provider>
   );
 }
 
