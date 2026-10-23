@@ -4,3 +4,12 @@ node_modules
 
 # Playwright MCP output
 .playwright-mcp/
+
+# AI assistant config and notes
+CLAUDE.md
+AGENTS.md
+.claude/
+
+# Logs and local environment files
+*.log
+.env*.local
