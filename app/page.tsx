@@ -2,6 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero/Hero";
+import WorkGrid from "./components/Work/WorkGrid";
 import { profile, projects, skills } from "./data";
 import Reveal from "./motion/Reveal";
 
@@ -23,25 +24,7 @@ export default function Home() {
       <main id="main" className="wrap">
         <Hero profile={profile} />
 
-        <section id="projects" className="block" aria-labelledby="projects-title">
-          <h2 id="projects-title" data-reveal>
-            A few things I&apos;ve built
-          </h2>
-          <ul className="projects">
-            {projects.map((project) => (
-              <li key={project.title} data-reveal>
-                <a href={project.href}>
-                  <span className="meta">{project.year}</span>
-                  <h3>
-                    {project.title} <ArrowUpRight size={18} aria-hidden="true" />
-                  </h3>
-                  <p>{project.text}</p>
-                  <span className="meta">{project.stack}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
+        <WorkGrid projects={projects} />
 
         <section id="about" className="block about" aria-labelledby="about-title">
           <div>
