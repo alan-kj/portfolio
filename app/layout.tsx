@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
 import { headers } from "next/headers";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 import { profile } from "./data";
+import Reveal from "./motion/Reveal";
 import { siteUrl } from "./seo";
 import "./styles/tokens.css";
 import "./styles/base.css";
@@ -18,6 +21,11 @@ const head = Bricolage_Grotesque({
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
 
 // Runs before first paint so a returning visitor never sees the wrong theme.
+const navLinks = [
+  { id: "projects", label: "Work" },
+  { id: "about", label: "About" },
+];
+
 const themeScript = `try{var t=localStorage.getItem("color-theme");document.documentElement.dataset.theme=t==="light"?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}`;
 
 export const metadata: Metadata = {
@@ -108,7 +116,15 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         />
       </head>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <Reveal />
+          <a className="skip-link" href="#main">
+            Skip to content
+          </a>
+          <Header name={profile.name} links={navLinks} contactId="contact" />
+          {children}
+          <Footer name={profile.name} github={profile.github} />
+        </ThemeProvider>
       </body>
     </html>
   );

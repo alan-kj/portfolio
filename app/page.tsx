@@ -1,26 +1,13 @@
 import { ArrowUpRight } from "lucide-react";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
 import Hero from "./components/Hero/Hero";
 import WorkGrid from "./components/Work/WorkGrid";
 import { profile, projects, skills } from "./data";
-import Reveal from "./motion/Reveal";
-
-const navLinks = [
-  { id: "projects", label: "Work" },
-  { id: "about", label: "About" },
-];
+import PageTransition from "./motion/PageTransition";
 
 // Interim sections: Phases 2-6 replace each block with its own component.
 export default function Home() {
   return (
-    <>
-      <Reveal />
-      <a className="skip-link" href="#main">
-        Skip to content
-      </a>
-      <Header name={profile.name} links={navLinks} contactId="contact" />
-
+    <PageTransition>
       <main id="main" className="wrap">
         <Hero profile={profile} />
 
@@ -60,8 +47,6 @@ export default function Home() {
           </a>
         </section>
       </main>
-
-      <Footer name={profile.name} github={profile.github} />
-    </>
+    </PageTransition>
   );
 }

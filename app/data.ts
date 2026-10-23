@@ -16,6 +16,11 @@ export type Profile = {
   email: string;
 };
 
+export type CaseStudySection = {
+  heading: string;
+  body: string;
+};
+
 export type Project = {
   slug: string;
   year: string;
@@ -24,6 +29,7 @@ export type Project = {
   role: string;
   tags: readonly string[];
   preview?: string; // image under public/, e.g. "/work/orbit-api.webp"; an abstract motif shows without it
+  sections?: readonly CaseStudySection[]; // the case-study page at /work/<slug>
   href: string;
 };
 
@@ -52,6 +58,22 @@ export const profile: Profile = {
   email: "", // add your email to show it in the contact section
 };
 
+// Placeholder case-study text. Replace it per project with the real story.
+const placeholderSections: readonly CaseStudySection[] = [
+  {
+    heading: "The problem",
+    body: "Describe what was missing or broken, and who it affected.",
+  },
+  {
+    heading: "The approach",
+    body: "Explain the key decisions you made and why you made them.",
+  },
+  {
+    heading: "The outcome",
+    body: "Say what changed once it shipped, with real numbers if you have them.",
+  },
+];
+
 // Placeholder projects: replace with your real ones. The first project is the featured card.
 export const projects: Project[] = [
   {
@@ -61,6 +83,7 @@ export const projects: Project[] = [
     text: "A payments API with retries and clear error messages for developers.",
     role: "Backend",
     tags: ["Node.js", "PostgreSQL", "Docker"],
+    sections: placeholderSections,
     href: "https://github.com/alan-kj",
   },
   {
@@ -70,6 +93,7 @@ export const projects: Project[] = [
     text: "A note app that links related ideas and finds notes by meaning.",
     role: "Full-stack",
     tags: ["Next.js", "TypeScript"],
+    sections: placeholderSections,
     href: "https://github.com/alan-kj",
   },
   {
@@ -79,6 +103,7 @@ export const projects: Project[] = [
     text: "A live view of server health with alerts written in plain language.",
     role: "Front end",
     tags: ["React", "WebSockets"],
+    sections: placeholderSections,
     href: "https://github.com/alan-kj",
   },
   {
@@ -88,6 +113,7 @@ export const projects: Project[] = [
     text: "An open-source command-line tool that tracks expenses from plain text files.",
     role: "Open source",
     tags: ["Go"],
+    sections: placeholderSections,
     href: "https://github.com/alan-kj",
   },
 ];

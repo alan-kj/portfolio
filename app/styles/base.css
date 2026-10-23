@@ -154,19 +154,117 @@
     color: var(--accent);
   }
 
-  /* Scroll reveal. Hidden only when JS has added `.js` to <html>, so the page works without it. */
+  /* Scroll reveal. Where scroll-driven animation exists it runs in pure CSS, so elements already in
+     view are shown at once (which keeps view transitions clean). Reveal.tsx covers other browsers. */
   @media (prefers-reduced-motion: no-preference) {
-    .js [data-reveal] {
-      transform: translateY(18px);
-      opacity: 0;
-      transition:
-        opacity 700ms var(--ease-out),
-        transform 700ms var(--ease-out);
+    @supports (animation-timeline: view()) {
+      [data-reveal] {
+        animation: reveal linear both;
+        animation-range: entry 0% entry 40%;
+        animation-timeline: view();
+      }
+
+      @keyframes reveal {
+        from {
+          transform: translateY(24px);
+          opacity: 0;
+        }
+
+        to {
+          transform: none;
+          opacity: 1;
+        }
+      }
     }
 
-    .js [data-reveal].in {
-      transform: none;
+    @supports not (animation-timeline: view()) {
+      .js [data-reveal] {
+        transform: translateY(18px);
+        opacity: 0;
+        transition:
+          opacity 700ms var(--ease-out),
+          transform 700ms var(--ease-out);
+      }
+
+      .js [data-reveal].in {
+        transform: none;
+        opacity: 1;
+      }
+    }
+  }
+
+  /* Page transitions (React <ViewTransition>). The header is named so it stays put. */
+  ::view-transition {
+    pointer-events: none;
+  }
+
+  ::view-transition-group(site-header) {
+    z-index: 100;
+    animation: none;
+  }
+
+  ::view-transition-old(site-header) {
+    display: none;
+  }
+
+  ::view-transition-new(site-header) {
+    animation: none;
+  }
+
+  ::view-transition-group(.morph) {
+    animation-duration: 500ms;
+    animation-timing-function: var(--ease-in-out);
+  }
+
+  ::view-transition-old(.nav-forward) {
+    --slide-offset: -48px;
+
+    animation:
+      160ms ease-in both vt-fade reverse,
+      420ms var(--ease-in-out) both vt-slide reverse;
+  }
+
+  ::view-transition-new(.nav-forward) {
+    --slide-offset: 48px;
+
+    animation:
+      240ms ease-out 160ms both vt-fade,
+      420ms var(--ease-in-out) both vt-slide;
+  }
+
+  ::view-transition-old(.nav-back) {
+    --slide-offset: 48px;
+
+    animation:
+      160ms ease-in both vt-fade reverse,
+      420ms var(--ease-in-out) both vt-slide reverse;
+  }
+
+  ::view-transition-new(.nav-back) {
+    --slide-offset: -48px;
+
+    animation:
+      240ms ease-out 160ms both vt-fade,
+      420ms var(--ease-in-out) both vt-slide;
+  }
+
+  @keyframes vt-fade {
+    from {
+      opacity: 0;
+    }
+
+    to {
       opacity: 1;
+    }
+  }
+
+  @keyframes vt-slide {
+    from {
+      translate: var(--slide-offset) 0;
+    }
+
+    to {
+      translate: 0 0;
     }
   }
 
@@ -182,6 +280,13 @@
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
+    }
+
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      animation-delay: 0s !important;
+      animation-duration: 0.01ms !important;
     }
   }
 }

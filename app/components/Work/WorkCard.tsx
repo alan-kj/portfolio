@@ -1,4 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { ViewTransition } from "react";
 import type { Project } from "../../data";
 import Spotlight from "../../motion/Spotlight";
 import styles from "./Work.module.css";
@@ -16,19 +18,25 @@ export default function WorkCard({ project, index, variant }: WorkCardProps) {
   return (
     <li className={`${styles.item} ${styles[variant]}`} data-reveal>
       <Spotlight className={styles.card}>
-        <div className={styles.preview}>
-          <WorkPreview title={project.title} preview={project.preview} index={index} />
-        </div>
+        <ViewTransition name={`work-${project.slug}`} share="morph" default="none">
+          <div className={styles.preview}>
+            <WorkPreview title={project.title} preview={project.preview} index={index} />
+          </div>
+        </ViewTransition>
         <div className={styles.body}>
           <p className={styles.meta}>
             <span>{project.year}</span>
             <span>{project.role}</span>
           </p>
           <h3 className={styles.title}>
-            <a href={project.href} className={styles.cardLink}>
+            <Link
+              href={`/work/${project.slug}`}
+              className={styles.cardLink}
+              transitionTypes={["nav-forward"]}
+            >
               {project.title}
               <ArrowUpRight className={styles.arrow} size={20} aria-hidden="true" />
-            </a>
+            </Link>
           </h3>
           <p className={styles.text}>{project.text}</p>
           <ul className={styles.tags} aria-label="Technologies">

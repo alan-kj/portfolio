@@ -1,5 +1,6 @@
 .header {
   position: sticky;
+  view-transition-name: site-header;
   z-index: 50;
   top: 12px;
   display: flex;
