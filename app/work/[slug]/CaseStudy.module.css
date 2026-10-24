@@ -172,24 +172,22 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .section {
-      animation: section-in linear both;
-      animation-range: entry 0% entry 45%;
-      animation-timeline: view();
+@supports (animation-timeline: view()) {
+  .section {
+    animation: section-in linear both;
+    animation-range: entry 0% entry 45%;
+    animation-timeline: view();
+  }
+
+  @keyframes section-in {
+    from {
+      transform: translateY(32px);
+      opacity: 0.15;
     }
 
-    @keyframes section-in {
-      from {
-        transform: translateY(32px);
-        opacity: 0.15;
-      }
-
-      to {
-        transform: none;
-        opacity: 1;
-      }
+    to {
+      transform: none;
+      opacity: 1;
     }
   }
 }

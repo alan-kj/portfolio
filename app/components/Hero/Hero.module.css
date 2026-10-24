@@ -112,52 +112,52 @@
 }
 
 /* One orchestrated entrance: the name rises, then the rest settles in. */
-@media (prefers-reduced-motion: no-preference) {
-  .rise {
-    transform: translateY(105%);
-    animation: rise 900ms var(--ease-out) forwards;
+
+.rise {
+  transform: translateY(105%);
+  animation: rise 900ms var(--ease-out) forwards;
+}
+
+.word:nth-child(2) .rise {
+  animation-delay: 120ms;
+}
+
+.pill,
+.lower {
+  opacity: 0;
+  animation: settle 700ms 450ms var(--ease-out) forwards;
+}
+
+.lower {
+  animation-delay: 650ms;
+}
+
+.dot::after {
+  animation: ping 2.4s ease-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes rise {
+  to {
+    transform: none;
+  }
+}
+
+@keyframes settle {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ping {
+  from {
+    opacity: 0.6;
+    transform: scale(1);
   }
 
-  .word:nth-child(2) .rise {
-    animation-delay: 120ms;
-  }
-
-  .pill,
-  .lower {
+  to {
     opacity: 0;
-    animation: settle 700ms 450ms var(--ease-out) forwards;
-  }
-
-  .lower {
-    animation-delay: 650ms;
-  }
-
-  .dot::after {
-    animation: ping 2.4s ease-out infinite;
-  }
-
-  @keyframes rise {
-    to {
-      transform: none;
-    }
-  }
-
-  @keyframes settle {
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes ping {
-    from {
-      opacity: 0.6;
-      transform: scale(1);
-    }
-
-    to {
-      opacity: 0;
-      transform: scale(2.8);
-    }
+    transform: scale(2.8);
   }
 }
 

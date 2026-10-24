@@ -13,8 +13,7 @@ export default function Reveal() {
 
     document.documentElement.classList.add("js");
     const items = document.querySelectorAll("[data-reveal]");
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce || !("IntersectionObserver" in window)) {
+    if (!("IntersectionObserver" in window)) {
       items.forEach((el) => el.classList.add("in"));
       return;
     }

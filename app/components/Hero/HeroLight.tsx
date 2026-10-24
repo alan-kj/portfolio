@@ -5,12 +5,11 @@ import { useEffect } from "react";
 const EASE = 0.08;
 
 // Eases the page light (--mx/--my) and the wordmark width (--px) toward the pointer.
-// Fine pointers only; reduced motion and touch keep the static defaults from the stylesheet.
+// Fine pointers only; touch keeps the static defaults from the stylesheet.
 export default function HeroLight() {
   useEffect(() => {
     const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!canHover || reduce) return;
+    if (!canHover) return;
 
     const root = document.documentElement;
     const target = { x: 0.5, y: -0.08, width: 1 };

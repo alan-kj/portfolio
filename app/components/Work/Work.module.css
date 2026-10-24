@@ -224,16 +224,14 @@
   transition-delay: 160ms;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .card:hover .caret,
-  .card:focus-within .caret {
-    animation: caret 900ms steps(1) infinite;
-  }
+.card:hover .caret,
+.card:focus-within .caret {
+  animation: caret 900ms steps(1) infinite;
+}
 
-  @keyframes caret {
-    50% {
-      opacity: 0;
-    }
+@keyframes caret {
+  50% {
+    opacity: 0;
   }
 }
 

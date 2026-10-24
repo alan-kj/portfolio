@@ -25,6 +25,12 @@ export async function generateMetadata({ params }: CaseStudyProps): Promise<Meta
     title: project.title,
     description: project.text,
     alternates: { canonical: `/work/${project.slug}` },
+    openGraph: {
+      title: project.title,
+      description: project.text,
+      url: `/work/${project.slug}`,
+      type: "article",
+    },
   };
 }
 

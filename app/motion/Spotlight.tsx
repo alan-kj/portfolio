@@ -15,8 +15,7 @@ export default function Spotlight({ children, className = "" }: SpotlightProps) 
   useEffect(() => {
     const el = ref.current;
     const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!el || !canHover || reduce) return;
+    if (!el || !canHover) return;
 
     const onMove = (event: PointerEvent) => {
       const box = el.getBoundingClientRect();

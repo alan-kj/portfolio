@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { profile } from "./data";
-import Cursor from "./motion/Cursor";
+import CursorLazy from "./motion/CursorLazy";
 import Reveal from "./motion/Reveal";
 import { siteUrl } from "./seo";
 import "./styles/tokens.css";
@@ -32,6 +32,15 @@ const navLinks = [
   { id: "experience", label: "Experience" },
   { id: "about", label: "About" },
 ];
+
+const personJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: "Software Engineer",
+  url: siteUrl.origin,
+  sameAs: [profile.github],
+}).replace(/</g, "\u003c");
 
 const themeScript = `try{var t=localStorage.getItem("color-theme");document.documentElement.dataset.theme=t==="light"?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}`;
 
@@ -72,8 +81,10 @@ export const metadata: Metadata = {
     lastName: "K J",
     username: "alan-kj",
   },
+  category: "technology",
+  formatDetection: { email: false, address: false, telephone: false },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Alan K J — Software Engineer",
     description:
       "Software engineer building reliable backends, APIs, and thoughtful web applications.",
@@ -121,11 +132,16 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: themeScript }}
         />
+        <script
+          type="application/ld+json"
+          nonce={nonce}
+          dangerouslySetInnerHTML={{ __html: personJsonLd }}
+        />
       </head>
       <body>
         <ThemeProvider>
           <Reveal />
-          <Cursor />
+          <CursorLazy />
           <a className="skip-link" href="#main">
             Skip to content
           </a>

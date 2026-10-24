@@ -221,40 +221,39 @@
 
   /* Scroll reveal. Where scroll-driven animation exists it runs in pure CSS, so elements already in
      view are shown at once (which keeps view transitions clean). Reveal.tsx covers other browsers. */
-  @media (prefers-reduced-motion: no-preference) {
-    @supports (animation-timeline: view()) {
-      [data-reveal] {
-        animation: reveal linear both;
-        animation-range: entry 0% entry 40%;
-        animation-timeline: view();
-      }
 
-      @keyframes reveal {
-        from {
-          transform: translateY(24px);
-          opacity: 0;
-        }
-
-        to {
-          transform: none;
-          opacity: 1;
-        }
-      }
+  @supports (animation-timeline: view()) {
+    [data-reveal] {
+      animation: reveal linear both;
+      animation-range: entry 0% entry 40%;
+      animation-timeline: view();
     }
 
-    @supports not (animation-timeline: view()) {
-      .js [data-reveal] {
-        transform: translateY(18px);
+    @keyframes reveal {
+      from {
+        transform: translateY(24px);
         opacity: 0;
-        transition:
-          opacity 700ms var(--ease-out),
-          transform 700ms var(--ease-out);
       }
 
-      .js [data-reveal].in {
+      to {
         transform: none;
         opacity: 1;
       }
+    }
+  }
+
+  @supports not (animation-timeline: view()) {
+    .js [data-reveal] {
+      transform: translateY(18px);
+      opacity: 0;
+      transition:
+        opacity 700ms var(--ease-out),
+        transform 700ms var(--ease-out);
+    }
+
+    .js [data-reveal].in {
+      transform: none;
+      opacity: 1;
     }
   }
 
@@ -330,28 +329,6 @@
 
     to {
       translate: 0 0;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after {
-      scroll-behavior: auto !important;
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-
-    ::view-transition-group(*),
-    ::view-transition-old(*),
-    ::view-transition-new(*) {
-      animation-delay: 0s !important;
-      animation-duration: 0.01ms !important;
     }
   }
 }

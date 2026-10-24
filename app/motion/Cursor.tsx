@@ -6,15 +6,15 @@ import styles from "./Cursor.module.css";
 const EASE = 0.18;
 
 // A ring that trails the pointer and swells over links and buttons. It sits beside the native
-// cursor rather than replacing it, and only runs for fine pointers without reduced motion.
+// cursor rather than replacing it. It runs everywhere except touch-only devices and deliberately
+// ignores the OS reduced-motion setting.
 export default function Cursor() {
   const ring = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = ring.current;
-    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!el || !canHover || reduce) return;
+    const canHover = !window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    if (!el || !canHover) return;
 
     const target = { x: 0, y: 0 };
     const current = { x: 0, y: 0 };

@@ -12,6 +12,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  images: { formats: ["image/avif", "image/webp"] },
   agentRules: false, // stop `next dev` from generating AGENTS.md
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
