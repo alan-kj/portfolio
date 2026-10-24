@@ -40,7 +40,7 @@ const personJsonLd = JSON.stringify({
   jobTitle: "Software Engineer",
   url: siteUrl.origin,
   sameAs: [profile.github],
-}).replace(/</g, "\u003c");
+}).replace(/</g, "\\u003c");
 
 const themeScript = `try{var t=localStorage.getItem("color-theme");document.documentElement.dataset.theme=t==="light"?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}`;
 
