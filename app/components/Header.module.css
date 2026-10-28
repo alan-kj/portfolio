@@ -80,9 +80,34 @@
   color: var(--accent);
 }
 
+/* On phones the links drop to a second row under the brand, so every page stays reachable. */
 @media (max-width: 560px) {
-  .link {
-    display: none;
+  .bar {
+    flex-wrap: wrap;
+    gap: 0 16px;
+  }
+
+  .brand {
+    order: 1;
+    padding-block: 14px;
+  }
+
+  .cta {
+    order: 2;
+    margin-left: auto;
+  }
+
+  .bar > :last-child {
+    order: 3;
+  }
+
+  .nav {
+    flex: 1 0 100%;
+    order: 4;
+    margin: 0 calc(var(--gutter) * -1);
+    padding-inline: calc(var(--gutter) - 10px);
+    border-top: 1px solid var(--line);
+    overflow-x: auto;
   }
 
   .cta svg {

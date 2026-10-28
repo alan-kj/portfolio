@@ -33,14 +33,14 @@ export default function Header({ name, links, contactHref }: HeaderProps) {
               {link.label}
             </Link>
           ))}
-          <Link
-            href={contactHref}
-            className={styles.cta}
-            aria-current={isCurrent(contactHref) ? "page" : undefined}
-          >
-            Get in touch <ArrowUpRight size={15} aria-hidden="true" />
-          </Link>
         </nav>
+        <Link
+          href={contactHref}
+          className={styles.cta}
+          aria-current={isCurrent(contactHref) ? "page" : undefined}
+        >
+          Get in touch <ArrowUpRight size={15} aria-hidden="true" />
+        </Link>
         <ThemeToggle />
       </div>
     </header>

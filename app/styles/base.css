@@ -50,8 +50,11 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  /* A column, so the footer sits at the bottom of the viewport on short pages. */
   body {
+    display: flex;
     min-height: 100dvh;
+    flex-direction: column;
     overflow-x: clip;
     background: var(--ink);
     color: var(--text);
