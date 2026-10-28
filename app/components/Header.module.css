@@ -58,11 +58,11 @@
 }
 
 .link:hover,
-.link[aria-current="location"] {
+.link[aria-current="page"] {
   color: var(--text);
 }
 
-.link[aria-current="location"] {
+.link[aria-current="page"] {
   border-color: var(--line-strong);
   color: var(--accent);
 }
@@ -75,7 +75,7 @@
 }
 
 .cta:hover,
-.cta[aria-current="location"] {
+.cta[aria-current="page"] {
   background: var(--ink);
   color: var(--accent);
 }
@@ -126,7 +126,7 @@
     padding: 8px 10px;
   }
 
-  .link[aria-current="location"]::before {
+  .link[aria-current="page"]::before {
     content: "> ";
   }
 

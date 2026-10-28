@@ -1,11 +1,11 @@
 # Alan K J — Portfolio
 
-A one-page developer portfolio with a terminal-style interface: solid black (or white) surfaces, monospace type, 1px rules, square corners, and no shadows or gradients. Built with Next.js 16 (App Router), React 19 and TypeScript, using plain CSS.
+A multi-page developer portfolio with a terminal-style interface: solid black (or white) surfaces, monospace type, 1px rules, square corners, and no shadows or gradients. Built with Next.js 16 (App Router), React 19 and TypeScript, using plain CSS.
 
 ## Features
 
 - **Console layout:** a fixed side rail for navigation, a status-line footer, and a hero with a profile window.
-- **Content as data:** projects are listed like a directory, experience reads like a `git log`, and each project has its own case-study page at `/work/<slug>`.
+- **Content as data:** projects are listed like a directory, experience reads like a `git log`, and the site is a set of real routes (`/projects`, `/experience`, `/about`, `/contact`), and each project has its own case-study page at `/projects/<slug>`.
 - **Dark and light themes:** dark by default, remembered per visitor, with no flash on load.
 - **Accessible and light:** keyboard focus styles, reduced-motion support, semantic markup, no client-side JavaScript beyond the theme toggle, nav highlighting and copy-email button.
 - **Hardened and discoverable:** a strict per-request Content-Security-Policy, security headers, canonical URLs, Open Graph image, `robots.txt`, `sitemap.xml` and JSON-LD.
@@ -46,8 +46,9 @@ There is no test suite; verify changes with `lint`, `typecheck` and `build`.
 app/
   data.ts            all site content
   layout.tsx         fonts, metadata, theme script, shell
-  page.tsx           the one-page portfolio
-  work/[slug]/       case-study pages
+  page.tsx           home (the hero)
+  projects/          project list, and [slug]/ case-study pages
+  experience/ about/ contact/   one page each
   components/        Header, Footer, Hero, Work, Experience, Skills, About, Contact
   motion/            scroll reveal and page transitions
   styles/            design tokens and base styles

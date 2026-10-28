@@ -24,11 +24,11 @@ export async function generateMetadata({ params }: CaseStudyProps): Promise<Meta
   return {
     title: project.title,
     description: project.text,
-    alternates: { canonical: `/work/${project.slug}` },
+    alternates: { canonical: `/projects/${project.slug}` },
     openGraph: {
       title: project.title,
       description: project.text,
-      url: `/work/${project.slug}`,
+      url: `/projects/${project.slug}`,
       type: "article",
     },
   };
@@ -45,8 +45,8 @@ export default async function CaseStudyPage({ params }: CaseStudyProps) {
   return (
     <PageTransition>
       <main id="main" className={`wrap ${styles.page}`}>
-        <Link href="/#projects" className={styles.back} transitionTypes={["nav-back"]}>
-          <ArrowLeft size={16} aria-hidden="true" /> ~/work
+        <Link href="/projects" className={styles.back} transitionTypes={["nav-back"]}>
+          <ArrowLeft size={16} aria-hidden="true" /> ~/projects
         </Link>
 
         <header className={styles.intro}>
@@ -94,7 +94,7 @@ export default async function CaseStudyPage({ params }: CaseStudyProps) {
 
         {next && (
           <nav className={styles.next} aria-label="Next project">
-            <Link href={`/work/${next.slug}`} transitionTypes={["nav-forward"]}>
+            <Link href={`/projects/${next.slug}`} transitionTypes={["nav-forward"]}>
               <span className={styles.nextLabel}>Next project</span>
               <span className={styles.nextTitle}>
                 {next.title} <ArrowUpRight size={28} aria-hidden="true" />

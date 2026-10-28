@@ -30,8 +30,8 @@ export type Project = {
   text: string;
   role: string;
   tags: readonly string[];
-  preview?: string; // image under public/, e.g. "/work/orbit-api.webp"; an abstract motif shows without it
-  sections?: readonly CaseStudySection[]; // the case-study page at /work/<slug>
+  preview?: string; // image under public/, e.g. "/previews/orbit-api.webp"; an abstract motif shows without it
+  sections?: readonly CaseStudySection[]; // the case-study page at /projects/<slug>
   href: string;
 };
 

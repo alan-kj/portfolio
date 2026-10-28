@@ -15,7 +15,7 @@ type ExperienceProps = Readonly<{
   education: readonly Education[];
 }>;
 
-function Timeline({ entries, Title }: Readonly<{ entries: readonly Entry[]; Title: "h3" | "h4" }>) {
+function Timeline({ entries, Title }: Readonly<{ entries: readonly Entry[]; Title: "h2" | "h3" }>) {
   return (
     <ol className={styles.list}>
       {entries.map((entry) => (
@@ -60,34 +60,30 @@ export default function Experience({ items, education }: ExperienceProps) {
   }));
 
   return (
-    <section
-      id="experience"
-      className="band"
-      aria-labelledby={showWork ? "experience-title" : "education-title"}
-    >
+    <section className="band" aria-labelledby={showWork ? "experience-title" : "education-title"}>
       {showWork && (
         <>
-          <h2 id="experience-title" className="section-title" data-reveal>
+          <h1 id="experience-title" className="section-title" data-reveal>
             Where I&apos;ve worked
-          </h2>
-          <Timeline entries={work} Title="h3" />
+          </h1>
+          <Timeline entries={work} Title="h2" />
         </>
       )}
 
       {study.length > 0 &&
         (showWork ? (
           <div className={styles.education}>
-            <h3 id="education-title" className={styles.subhead} data-reveal>
-              Education
-            </h3>
-            <Timeline entries={study} Title="h4" />
-          </div>
-        ) : (
-          <>
-            <h2 id="education-title" className="section-title" data-reveal>
+            <h2 id="education-title" className={styles.subhead} data-reveal>
               Education
             </h2>
             <Timeline entries={study} Title="h3" />
+          </div>
+        ) : (
+          <>
+            <h1 id="education-title" className="section-title" data-reveal>
+              Education
+            </h1>
+            <Timeline entries={study} Title="h2" />
           </>
         ))}
     </section>

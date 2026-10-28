@@ -3,7 +3,7 @@ import { IBM_Plex_Mono, JetBrains_Mono } from "next/font/google";
 import { headers } from "next/headers";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import { profile } from "./data";
+import { education, experience, profile } from "./data";
 import Reveal from "./motion/Reveal";
 import { siteUrl } from "./seo";
 import "./styles/tokens.css";
@@ -25,9 +25,11 @@ const head = JetBrains_Mono({
 
 // Runs before first paint so a returning visitor never sees the wrong theme.
 const navLinks = [
-  { id: "projects", label: "Work" },
-  { id: "experience", label: "Experience" },
-  { id: "about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  ...(experience.length > 0 || education.length > 0
+    ? [{ href: "/experience", label: "Experience" }]
+    : []),
+  { href: "/about", label: "About" },
 ];
 
 const personJsonLd = JSON.stringify({
@@ -141,7 +143,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           <a className="skip-link" href="#main">
             Skip to content
           </a>
-          <Header name={profile.name} links={navLinks} contactId="contact" />
+          <Header name={profile.name} links={navLinks} contactHref="/contact" />
           {children}
           <Footer
             name={profile.name}

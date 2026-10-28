@@ -11,11 +11,11 @@ type AboutProps = Readonly<{
 
 export default function About({ profile, skills, metrics, projects }: AboutProps) {
   return (
-    <section id="about" className="band" aria-labelledby="about-title">
+    <section className="band" aria-labelledby="about-title">
       <div className={styles.intro}>
-        <h2 id="about-title" className="section-title" data-reveal>
+        <h1 id="about-title" className="section-title" data-reveal>
           Good software feels simple
-        </h2>
+        </h1>
         <div className={styles.copy}>
           {profile.about.map((paragraph) => (
             <p key={paragraph} data-reveal>

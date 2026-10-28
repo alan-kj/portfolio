@@ -9,16 +9,16 @@ export default function WorkCard({ project }: Readonly<{ project: Project }>) {
     <li className={styles.entry} data-reveal>
       <p className={styles.year}>{project.year}</p>
       <div className={styles.main}>
-        <h3 className={styles.title}>
+        <h2 className={styles.title}>
           <Link
-            href={`/work/${project.slug}`}
+            href={`/projects/${project.slug}`}
             className={styles.rowLink}
             transitionTypes={["nav-forward"]}
           >
             {project.title}
             <ArrowUpRight className={styles.arrow} size={18} aria-hidden="true" />
           </Link>
-        </h3>
+        </h2>
         <p className={styles.text}>{project.text}</p>
       </div>
       <p className={styles.role}>{project.role}</p>

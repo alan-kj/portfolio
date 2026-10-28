@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: { formats: ["image/avif", "image/webp"] },
   agentRules: false, // stop `next dev` from generating AGENTS.md
+  // The case studies used to live under /work. The pattern skips file names, so images in public/work still load.
+  async redirects() {
+    return [{ source: "/work/:slug([a-z0-9-]+)", destination: "/projects/:slug", permanent: true }];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

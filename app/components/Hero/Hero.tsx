@@ -1,4 +1,5 @@
-import { ArrowDown, FileText } from "lucide-react";
+import { ArrowRight, FileText } from "lucide-react";
+import Link from "next/link";
 import type { Profile } from "../../data";
 import ResumeLink from "../ResumeLink";
 import styles from "./Hero.module.css";
@@ -7,7 +8,7 @@ export default function Hero({ profile }: Readonly<{ profile: Profile }>) {
   const { status, email, github, linkedin } = profile;
 
   return (
-    <section id="top" className={styles.hero} aria-labelledby="hero-title">
+    <section className={styles.hero} aria-labelledby="hero-title">
       <div className={styles.main}>
         <p className={styles.prompt} aria-hidden="true">
           whoami
@@ -19,9 +20,9 @@ export default function Hero({ profile }: Readonly<{ profile: Profile }>) {
         <p className={styles.lead}>{profile.headline}</p>
         <p className={styles.intro}>{profile.intro}</p>
         <div className={styles.actions}>
-          <a className="btn btn-primary" href="#projects">
-            Explore my work <ArrowDown className="btn-nudge" size={16} aria-hidden="true" />
-          </a>
+          <Link className="btn btn-primary" href="/projects" transitionTypes={["nav-forward"]}>
+            Explore my work <ArrowRight size={16} aria-hidden="true" />
+          </Link>
           {profile.resumeUrl && (
             <ResumeLink
               className="btn btn-secondary"

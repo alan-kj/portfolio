@@ -8,10 +8,10 @@ export default function Contact({ profile }: Readonly<{ profile: Profile }>) {
   const elsewhere = linkedin ? "GitHub or LinkedIn" : "GitHub";
 
   return (
-    <section id="contact" className="band" aria-labelledby="contact-title">
-      <h2 id="contact-title" className="section-title" data-reveal>
+    <section className="band" aria-labelledby="contact-title">
+      <h1 id="contact-title" className="section-title" data-reveal>
         Let&apos;s make it real.
-      </h2>
+      </h1>
       <p className={styles.text} data-reveal>
         {email
           ? `Have a project or a role in mind? Send me an email, or find me on ${elsewhere}.`
