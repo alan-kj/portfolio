@@ -1,5 +1,4 @@
 import type { Metric, Project, Skill } from "../../data";
-import Spotlight from "../../motion/Spotlight";
 import styles from "./Skills.module.css";
 
 type SkillsProps = Readonly<{
@@ -35,14 +34,14 @@ export default function Skills({ skills, metrics, projects }: SkillsProps) {
       <ul className={styles.bento} aria-label="Skills">
         {skills.map((skill) => (
           <li key={skill.group} className={styles.cell} data-reveal>
-            <Spotlight className={styles.tile}>
+            <div className={styles.tile}>
               <h3 className={styles.group}>{skill.group}</h3>
               <ul className={styles.chips}>
                 {skill.items.split(",").map((item) => (
                   <li key={item}>{item.trim()}</li>
                 ))}
               </ul>
-            </Spotlight>
+            </div>
           </li>
         ))}
       </ul>

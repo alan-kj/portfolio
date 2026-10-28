@@ -27,16 +27,14 @@
   height: 100%;
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-l);
-  background: var(--glass);
-  box-shadow: inset 0 1px 0 var(--edge);
-  transition: border-color 250ms var(--ease-out);
+  border: 1px solid var(--line-strong);
+  background: var(--panel);
+  transition: border-color 100ms linear;
 }
 
 .card:hover,
 .card:focus-within {
-  border-color: var(--line-strong);
+  border-color: var(--accent);
 }
 
 .preview {
@@ -44,8 +42,8 @@
   height: 160px;
   flex: none;
   overflow: hidden;
-  border-bottom: 1px solid var(--line);
-  background: var(--glass);
+  border-bottom: 1px solid var(--line-strong);
+  background: var(--ink);
 }
 
 .image {
@@ -57,7 +55,7 @@
   flex: 1;
   flex-direction: column;
   gap: 10px;
-  padding: 24px;
+  padding: 20px;
 }
 
 .meta {
@@ -76,8 +74,9 @@
 .title {
   font-family: var(--font-head);
   font-size: var(--step-1);
+  font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
 /* The heading link stretches over the whole card so the card is one target. */
@@ -91,7 +90,6 @@
 .cardLink::after {
   position: absolute;
   inset: 0;
-  border-radius: var(--radius-l);
   content: "";
 }
 
@@ -101,21 +99,18 @@
 
 .cardLink:focus-visible::after {
   outline: 2px solid var(--accent);
-  outline-offset: 3px;
+  outline-offset: 2px;
 }
 
 .arrow {
   flex: none;
   color: var(--muted);
-  transition:
-    color 250ms var(--ease-out),
-    transform 250ms var(--ease-out);
+  transition: color 100ms linear;
 }
 
 .card:hover .arrow,
 .card:focus-within .arrow {
   color: var(--accent);
-  transform: translate(3px, -3px);
 }
 
 .text {
@@ -132,9 +127,8 @@
 }
 
 .tags li {
-  padding: 4px 12px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
+  padding: 2px 8px;
+  border: 1px solid var(--line-strong);
   font-family: var(--font-code);
   font-size: var(--step-s);
 }
@@ -158,14 +152,14 @@
   fill: none;
   stroke: var(--line-strong);
   stroke-width: 1.5;
-  transition: stroke 400ms var(--ease-out);
+  transition: stroke 100ms linear;
 }
 
 .chevron {
   fill: none;
   stroke: var(--accent);
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
   stroke-width: 3;
 }
 
@@ -173,7 +167,7 @@
 .node,
 .bar {
   transform-box: fill-box;
-  transition: transform 600ms var(--ease-out);
+  transition: transform 150ms steps(3);
 }
 
 .bar {
@@ -244,7 +238,7 @@
     width: 42%;
     height: auto;
     min-height: 190px;
-    border-right: 1px solid var(--line);
+    border-right: 1px solid var(--line-strong);
     border-bottom: 0;
   }
 }
@@ -275,7 +269,7 @@
 
   .feature .body {
     flex: none;
-    padding: 32px;
+    padding: 28px;
   }
 
   .feature .title {

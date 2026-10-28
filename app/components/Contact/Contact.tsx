@@ -1,6 +1,5 @@
 import { ArrowUpRight, CodeXml } from "lucide-react";
 import type { Profile } from "../../data";
-import Magnetic from "../../motion/Magnetic";
 import styles from "./Contact.module.css";
 import CopyEmail from "./CopyEmail";
 
@@ -26,16 +25,10 @@ export default function Contact({ profile }: Readonly<{ profile: Profile }>) {
       )}
 
       <div className={styles.actions} data-reveal>
-        {email && (
-          <Magnetic>
-            <CopyEmail email={email} />
-          </Magnetic>
-        )}
-        <Magnetic>
-          <a className={`btn ${email ? "btn-secondary" : "btn-primary"}`} href={github}>
-            <CodeXml size={16} aria-hidden="true" /> GitHub
-          </a>
-        </Magnetic>
+        {email && <CopyEmail email={email} />}
+        <a className={`btn ${email ? "btn-secondary" : "btn-primary"}`} href={github}>
+          <CodeXml size={16} aria-hidden="true" /> GitHub
+        </a>
       </div>
     </section>
   );

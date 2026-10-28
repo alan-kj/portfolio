@@ -4,62 +4,49 @@
   :root {
     color-scheme: dark;
 
-    /* Color: dark is the default theme */
-    --ink: #0c1013;
-    --glass: rgba(255, 255, 255, 0.04);
-    --glass-strong: rgba(255, 255, 255, 0.08);
-    --line: rgba(233, 236, 232, 0.1);
-    --line-strong: rgba(233, 236, 232, 0.22);
-    --text: #e9ece8;
-    --muted: #8d9a96;
-    --accent: #f0b24a;
-    --accent-ink: #1a1204;
-    --signal: #3fb8a6;
-    --glow: rgba(240, 178, 74, 0.13);
-    --spot: rgba(240, 178, 74, 0.16);
-    --edge: rgba(255, 255, 255, 0.06);
-    --noise-opacity: 0.05;
-    --noise-invert: 0;
-    --header-bg: rgba(19, 26, 31, 0.6);
+    /* Color: solid fills and 1px rules only; no alpha, gradients or shadows */
+    --ink: #000000;
+    --panel: #0d0d0d;
+    --panel-hover: #1a1a1a;
+    --line: #2a2a2a;
+    --line-strong: #4d4d4d;
+    --text: #e8e8e8;
+    --muted: #9a9a9a;
+    --accent: #ffb000;
+    --accent-ink: #000000;
+    --signal: #3ddc84;
 
-    /* Type */
-    --font-body: var(--font-geist), system-ui, sans-serif;
-    --font-head: var(--font-bricolage), var(--font-geist), system-ui, sans-serif;
-    --font-code: var(--font-geist-mono), ui-monospace, consolas, monospace;
-    --step-s: clamp(0.8rem, 0.78rem + 0.1vw, 0.875rem);
-    --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
-    --step-1: clamp(1.25rem, 1.1rem + 0.7vw, 1.6rem);
-    --step-2: clamp(1.6rem, 1.3rem + 1.4vw, 2.4rem);
-    --step-3: clamp(2.2rem, 1.6rem + 3vw, 4rem);
+    /* Type: JetBrains Mono for headings and chrome, IBM Plex Mono for reading text */
+    --font-body: var(--font-plex-mono), ui-monospace, consolas, monospace;
+    --font-head: var(--font-jetbrains-mono), ui-monospace, consolas, monospace;
+    --font-code: var(--font-jetbrains-mono), ui-monospace, consolas, monospace;
+    --step-s: clamp(0.78rem, 0.76rem + 0.1vw, 0.85rem);
+    --step-0: clamp(0.9375rem, 0.92rem + 0.15vw, 1.0625rem);
+    --step-1: clamp(1.05rem, 1rem + 0.4vw, 1.3rem);
+    --step-2: clamp(1.25rem, 1.1rem + 1vw, 1.9rem);
+    --step-3: clamp(1.75rem, 1.3rem + 2.2vw, 3rem);
 
-    /* Space and shape */
+    /* Space */
     --gutter: clamp(16px, 4vw, 48px);
     --page-max: 1240px;
-    --radius-l: 28px;
 
     /* Motion */
     --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
     --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-    --header-h: 72px;
+    --header-h: 56px;
   }
 
   :root[data-theme="light"] {
     color-scheme: light;
-    --ink: #eef0f2;
-    --glass: rgba(12, 16, 19, 0.04);
-    --glass-strong: rgba(12, 16, 19, 0.08);
-    --line: rgba(12, 16, 19, 0.12);
-    --line-strong: rgba(12, 16, 19, 0.26);
-    --text: #12171a;
-    --muted: #566268;
-    --accent: #9a5f0c;
+    --ink: #ffffff;
+    --panel: #f3f3f3;
+    --panel-hover: #e6e6e6;
+    --line: #d0d0d0;
+    --line-strong: #8a8a8a;
+    --text: #000000;
+    --muted: #4d4d4d;
+    --accent: #8a5a00;
     --accent-ink: #ffffff;
-    --signal: #1f7f70;
-    --glow: rgba(154, 95, 12, 0.1);
-    --spot: rgba(154, 95, 12, 0.12);
-    --edge: rgba(255, 255, 255, 0.8);
-    --noise-opacity: 0.06;
-    --noise-invert: 1;
-    --header-bg: rgba(255, 255, 255, 0.7);
+    --signal: #0b7a3e;
   }
 }

@@ -27,7 +27,7 @@
   align-items: center;
   gap: 4px;
   text-decoration: none;
-  transition: color 200ms var(--ease-out);
+  transition: color 100ms linear;
 }
 
 .link:hover {

@@ -52,7 +52,7 @@ export function ThemeProvider({ children }: Readonly<{ children: React.ReactNode
     document.documentElement.dataset.theme = colorTheme;
     document
       .querySelector('meta[name="theme-color"]')
-      ?.setAttribute("content", colorTheme === "dark" ? "#0c1013" : "#eef0f2");
+      ?.setAttribute("content", colorTheme === "dark" ? "#000000" : "#ffffff");
   }, [colorTheme]);
 
   function toggleTheme() {

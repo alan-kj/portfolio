@@ -2,41 +2,40 @@
   position: sticky;
   view-transition-name: site-header;
   z-index: 50;
-  top: 12px;
+  top: 0;
   display: flex;
   justify-content: center;
   padding-inline: var(--gutter);
-  pointer-events: none;
+  border-bottom: 1px solid var(--line);
+  background: var(--ink);
 }
 
 .bar {
   display: flex;
-  width: min(760px, 100%);
-  min-height: calc(var(--header-h) - 20px);
+  width: min(var(--page-max), 100%);
+  min-height: var(--header-h);
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 8px 10px 8px 22px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--header-bg);
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  pointer-events: auto;
 }
 
+/* A shell prompt in front of the name: user@host:~$ */
 .brand {
   font-family: var(--font-head);
-  font-size: 1.05rem;
+  font-size: var(--step-s);
   font-weight: 700;
-  letter-spacing: -0.02em;
   text-decoration: none;
+}
+
+.brand::before {
+  color: var(--signal);
+  content: "~/";
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: clamp(4px, 1.5vw, 12px);
+  gap: clamp(2px, 1vw, 8px);
   margin-left: auto;
 }
 
@@ -45,43 +44,44 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 8px 14px;
-  border-radius: 999px;
+  padding: 6px 12px;
+  border: 1px solid transparent;
   color: var(--muted);
+  font-family: var(--font-head);
   font-size: var(--step-s);
   text-decoration: none;
   transition:
-    background-color 200ms var(--ease-out),
-    color 200ms var(--ease-out);
+    background-color 100ms linear,
+    color 100ms linear;
 }
 
 .link:hover,
 .link[aria-current="location"] {
-  background: var(--glass-strong);
   color: var(--text);
 }
 
+.link[aria-current="location"] {
+  border-color: var(--line-strong);
+}
+
 .cta {
-  background: var(--text);
-  color: var(--ink);
-  font-weight: 600;
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 700;
 }
 
 .cta:hover {
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: var(--ink);
+  color: var(--accent);
 }
 
 .cta[aria-current="location"] {
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: var(--ink);
+  color: var(--accent);
 }
 
 @media (max-width: 560px) {
-  .brand {
-    font-size: 0.95rem;
-  }
-
   .link {
     display: none;
   }

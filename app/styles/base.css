@@ -57,37 +57,10 @@
     color: var(--text);
     font-family: var(--font-body);
     font-size: var(--step-0);
-    line-height: 1.6;
+    font-variant-ligatures: none;
+    line-height: 1.65;
     text-rendering: optimizelegibility;
     -webkit-font-smoothing: antialiased;
-  }
-
-  /* Film grain: an SVG noise tile, allowed by `img-src data:` */
-  body::before {
-    position: fixed;
-    z-index: 100;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    content: "";
-    filter: invert(var(--noise-invert));
-    opacity: var(--noise-opacity);
-    pointer-events: none;
-  }
-
-  /* Ambient light that follows the pointer (--mx / --my are set by HeroLight) */
-  body::after {
-    position: fixed;
-    z-index: -1;
-    inset: 0;
-    background:
-      radial-gradient(
-        circle at var(--mx, 50%) var(--my, -8%),
-        var(--glow),
-        transparent min(60vw, 720px)
-      ),
-      radial-gradient(ellipse at 100% 100%, var(--glass), transparent 55%);
-    content: "";
-    pointer-events: none;
   }
 
   ::selection {
@@ -97,8 +70,7 @@
 
   :focus-visible {
     outline: 2px solid var(--accent);
-    outline-offset: 4px;
-    border-radius: 4px;
+    outline-offset: 2px;
   }
 
   .wrap {
@@ -122,7 +94,6 @@
     left: 12px;
     padding: 0.6rem 1rem;
     transform: translateY(-160%);
-    border-radius: 999px;
     background: var(--text);
     color: var(--ink);
     font-weight: 600;
@@ -140,12 +111,19 @@
   }
 
   .section-title {
-    max-width: 14ch;
+    max-width: 20ch;
     font-family: var(--font-head);
     font-size: var(--step-3);
-    letter-spacing: -0.03em;
-    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
     text-wrap: balance;
+  }
+
+  /* A shell prompt marks each section, like a heading in a man page. */
+  .section-title::before {
+    color: var(--accent);
+    content: "$ ";
   }
 
   .btn {
@@ -154,17 +132,18 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 12px 26px;
-    border: 1px solid transparent;
-    border-radius: 999px;
-    font-weight: 600;
+    padding: 10px 20px;
+    border: 1px solid var(--accent);
+    font-family: var(--font-head);
+    font-size: var(--step-s);
+    font-weight: 700;
     line-height: 1.3;
     text-decoration: none;
     cursor: pointer;
     transition:
-      background-color 200ms var(--ease-out),
-      border-color 200ms var(--ease-out),
-      filter 200ms var(--ease-out);
+      background-color 100ms linear,
+      color 100ms linear,
+      border-color 100ms linear;
   }
 
   .btn-primary {
@@ -173,24 +152,26 @@
   }
 
   .btn-primary:hover {
-    filter: brightness(1.1);
+    background: var(--ink);
+    color: var(--accent);
   }
 
   .btn-secondary {
     border-color: var(--line-strong);
-    background: var(--glass);
+    background: var(--ink);
     color: var(--text);
   }
 
   .btn-secondary:hover {
     border-color: var(--accent);
-    background: var(--glass-strong);
+    background: var(--panel-hover);
+    color: var(--accent);
   }
 
   /* Downward-pointing icons (scroll, download) nudge down on hover. */
   .btn-nudge {
     flex: none;
-    transition: transform 250ms var(--ease-out);
+    transition: transform 100ms linear;
   }
 
   .btn:hover .btn-nudge {
@@ -203,15 +184,13 @@
     height: 40px;
     flex: 0 0 auto;
     place-items: center;
-    border: 1px solid var(--line);
-    border-radius: 50%;
-    background: var(--glass);
+    border: 1px solid var(--line-strong);
+    background: var(--ink);
     color: var(--text);
     cursor: pointer;
     transition:
-      color 200ms var(--ease-out),
-      border-color 200ms var(--ease-out),
-      background-color 200ms var(--ease-out);
+      color 100ms linear,
+      border-color 100ms linear;
   }
 
   .theme-toggle:hover {
@@ -231,12 +210,10 @@
 
     @keyframes reveal {
       from {
-        transform: translateY(24px);
         opacity: 0;
       }
 
       to {
-        transform: none;
         opacity: 1;
       }
     }
@@ -244,15 +221,11 @@
 
   @supports not (animation-timeline: view()) {
     .js [data-reveal] {
-      transform: translateY(18px);
       opacity: 0;
-      transition:
-        opacity 700ms var(--ease-out),
-        transform 700ms var(--ease-out);
+      transition: opacity 250ms linear;
     }
 
     .js [data-reveal].in {
-      transform: none;
       opacity: 1;
     }
   }

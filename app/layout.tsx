@@ -1,29 +1,26 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
+import { IBM_Plex_Mono, JetBrains_Mono } from "next/font/google";
 import { headers } from "next/headers";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { profile } from "./data";
-import CursorLazy from "./motion/CursorLazy";
 import Reveal from "./motion/Reveal";
 import { siteUrl } from "./seo";
 import "./styles/tokens.css";
 import "./styles/base.css";
 import { ThemeProvider } from "./ThemeProvider";
 
-const body = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
-const head = Bricolage_Grotesque({
+const body = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-bricolage",
-  axes: ["wdth"], // the width axis drives the hero; skipping optical size keeps the file ~40% smaller
+  weight: ["400", "600"],
+  variable: "--font-plex-mono",
   display: "swap",
 });
-// Only small labels use the mono face, all below the fold, so it should not compete for the first paint.
-const mono = Geist_Mono({
+// Headings and UI chrome. The variable font keeps the weight range in one file.
+const head = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-geist-mono",
+  variable: "--font-jetbrains-mono",
   display: "swap",
-  preload: false,
 });
 
 // Runs before first paint so a returning visitor never sees the wrong theme.
@@ -105,7 +102,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#0c1013",
+  themeColor: "#000000",
   colorScheme: "dark light",
 };
 export const dynamic = "force-dynamic";
@@ -123,7 +120,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     <html
       lang="en"
       data-theme="dark"
-      className={`${body.variable} ${head.variable} ${mono.variable}`}
+      className={`${body.variable} ${head.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -141,7 +138,6 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       <body>
         <ThemeProvider>
           <Reveal />
-          <CursorLazy />
           <a className="skip-link" href="#main">
             Skip to content
           </a>

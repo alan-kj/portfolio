@@ -2,7 +2,6 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { ViewTransition } from "react";
 import type { Project } from "../../data";
-import Spotlight from "../../motion/Spotlight";
 import styles from "./Work.module.css";
 import WorkPreview from "./WorkPreview";
 
@@ -17,7 +16,7 @@ type WorkCardProps = Readonly<{
 export default function WorkCard({ project, index, variant }: WorkCardProps) {
   return (
     <li className={`${styles.item} ${styles[variant]}`} data-reveal>
-      <Spotlight className={styles.card}>
+      <div className={styles.card}>
         <ViewTransition name={`work-${project.slug}`} share="morph" default="none">
           <div className={styles.preview}>
             <WorkPreview title={project.title} preview={project.preview} index={index} />
@@ -45,7 +44,7 @@ export default function WorkCard({ project, index, variant }: WorkCardProps) {
             ))}
           </ul>
         </div>
-      </Spotlight>
+      </div>
     </li>
   );
 }

@@ -10,10 +10,10 @@
 
 .title {
   font-family: var(--font-head);
-  font-size: clamp(5rem, 24vw, 16rem);
-  font-weight: 700;
+  font-size: clamp(4rem, 20vw, 12rem);
+  font-weight: 800;
   letter-spacing: -0.05em;
-  line-height: 0.9;
+  line-height: 0.95;
 }
 
 .text {
@@ -26,17 +26,18 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 22px;
+  padding: 10px 20px;
   border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  font-weight: 600;
+  font-family: var(--font-head);
+  font-size: var(--step-s);
+  font-weight: 700;
   text-decoration: none;
   transition:
-    border-color 200ms var(--ease-out),
-    background-color 200ms var(--ease-out);
+    border-color 100ms linear,
+    background-color 100ms linear;
 }
 
 .back:hover {
   border-color: var(--accent);
-  background: var(--glass-strong);
+  background: var(--panel-hover);
 }

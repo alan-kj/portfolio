@@ -15,14 +15,14 @@ export default function OpengraphImage() {
         flexDirection: "column",
         justifyContent: "space-between",
         padding: 80,
-        background: "#0c1013",
-        color: "#f2f5f7",
+        background: "#000000",
+        color: "#e8e8e8",
       }}
     >
-      <div style={{ fontSize: 32, color: "#8a979f" }}>Software Engineer</div>
+      <div style={{ fontSize: 32, color: "#9a9a9a" }}>Software Engineer</div>
       <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
         <div style={{ fontSize: 148, fontWeight: 700, letterSpacing: -4 }}>{profile.name}</div>
-        <div style={{ fontSize: 44, color: "#c3ccd2" }}>{profile.headline}</div>
+        <div style={{ fontSize: 44, color: "#e8e8e8" }}>{profile.headline}</div>
       </div>
     </div>,
     size,

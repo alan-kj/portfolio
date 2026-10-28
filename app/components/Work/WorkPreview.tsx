@@ -56,14 +56,15 @@ export default function WorkPreview({ title, preview, index }: WorkPreviewProps)
       {motif === "rows" &&
         rowWidths.map((width, i) => (
           <g key={width} className={styles.row}>
-            <circle
+            <rect
               className={i === 1 ? styles.hot : styles.shape}
-              cx="24"
-              cy={26 + i * 26}
-              r="4"
+              x="20"
+              y={22 + i * 26}
+              width="8"
+              height="8"
             />
-            <rect className={styles.shape} x="40" y={22 + i * 26} width={width} height="8" rx="4" />
-            <rect className={styles.shape} x="190" y={22 + i * 26} width="30" height="8" rx="4" />
+            <rect className={styles.shape} x="40" y={22 + i * 26} width={width} height="8" />
+            <rect className={styles.shape} x="190" y={22 + i * 26} width="30" height="8" />
           </g>
         ))}
 
@@ -80,12 +81,13 @@ export default function WorkPreview({ title, preview, index }: WorkPreviewProps)
             />
           ))}
           {nodePoints.map(([cx, cy], i) => (
-            <circle
+            <rect
               key={`${cx}-${cy}`}
               className={`${i === 1 ? styles.hot : styles.shape} ${styles.node}`}
-              cx={cx}
-              cy={cy}
-              r={i === 1 ? 12 : 9}
+              x={cx - (i === 1 ? 12 : 9)}
+              y={cy - (i === 1 ? 12 : 9)}
+              width={i === 1 ? 24 : 18}
+              height={i === 1 ? 24 : 18}
             />
           ))}
         </>
@@ -102,7 +104,6 @@ export default function WorkPreview({ title, preview, index }: WorkPreviewProps)
               y={130 - height}
               width="18"
               height={height}
-              rx="4"
             />
           ))}
         </>
@@ -119,17 +120,9 @@ export default function WorkPreview({ title, preview, index }: WorkPreviewProps)
               y={40 + i * 22}
               width={width}
               height="8"
-              rx="4"
             />
           ))}
-          <rect
-            className={`${styles.hot} ${styles.caret}`}
-            x="52"
-            y="128"
-            width="9"
-            height="12"
-            rx="2"
-          />
+          <rect className={`${styles.hot} ${styles.caret}`} x="52" y="128" width="9" height="12" />
         </>
       )}
     </svg>

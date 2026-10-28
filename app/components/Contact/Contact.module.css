@@ -5,29 +5,26 @@
   font-size: var(--step-1);
 }
 
-/* The address is the call to action: set large, with a rule that draws in on hover. */
+/* The address is the call to action: set large, underlined, turning amber on hover. */
 .email {
   display: inline-flex;
   align-items: flex-start;
   gap: 8px;
   margin-top: clamp(32px, 6vw, 64px);
-  padding-bottom: 6px;
-  background: linear-gradient(var(--accent), var(--accent)) left bottom / 0 3px no-repeat;
   font-family: var(--font-head);
-  font-size: clamp(1.75rem, 7vw, 5.5rem);
+  font-size: clamp(1.1rem, 5vw, 3.25rem);
   font-weight: 700;
-  letter-spacing: -0.035em;
-  line-height: 1;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
   overflow-wrap: anywhere;
-  text-decoration: none;
-  transition:
-    background-size 500ms var(--ease-out),
-    color 250ms var(--ease-out);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+  transition: color 100ms linear;
 }
 
 .email:hover,
 .email:focus-visible {
-  background-size: 100% 3px;
   color: var(--accent);
 }
 
