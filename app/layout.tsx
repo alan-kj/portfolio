@@ -34,9 +34,9 @@ const personJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Person",
   name: profile.name,
-  jobTitle: "Software Engineer",
+  jobTitle: profile.role,
   url: siteUrl.origin,
-  sameAs: [profile.github],
+  sameAs: [profile.github, profile.linkedin].filter(Boolean),
 }).replace(/</g, "\\u003c");
 
 const themeScript = `try{var t=localStorage.getItem("color-theme");document.documentElement.dataset.theme=t==="light"?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}`;
@@ -44,7 +44,7 @@ const themeScript = `try{var t=localStorage.getItem("color-theme");document.docu
 export const metadata: Metadata = {
   metadataBase: siteUrl,
   title: {
-    default: "Alan K J — Software Engineer",
+    default: `${profile.name} — ${profile.role}`,
     template: "%s | Alan K J",
   },
   description:
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Alan K J — Software Engineer",
+    title: `${profile.name} — ${profile.role}`,
     description:
       "Software engineer building reliable backends, APIs, and thoughtful web applications.",
     url: "/",
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
   formatDetection: { email: false, address: false, telephone: false },
   twitter: {
     card: "summary_large_image",
-    title: "Alan K J — Software Engineer",
+    title: `${profile.name} — ${profile.role}`,
     description:
       "Software engineer building reliable backends, APIs, and thoughtful web applications.",
   },
@@ -146,6 +146,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           <Footer
             name={profile.name}
             github={profile.github}
+            linkedin={profile.linkedin}
             resumeUrl={profile.resumeUrl}
             resumeFileName={profile.resumeFileName}
           />

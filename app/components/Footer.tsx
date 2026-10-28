@@ -6,11 +6,12 @@ import styles from "./Footer.module.css";
 type FooterProps = Readonly<{
   name: string;
   github: string;
+  linkedin: string;
   resumeUrl: string;
   resumeFileName: string;
 }>;
 
-export default function Footer({ name, github, resumeUrl, resumeFileName }: FooterProps) {
+export default function Footer({ name, github, linkedin, resumeUrl, resumeFileName }: FooterProps) {
   return (
     <footer className={styles.footer}>
       <Link href="/#top" className={styles.brand}>
@@ -22,6 +23,11 @@ export default function Footer({ name, github, resumeUrl, resumeFileName }: Foot
           <ResumeLink className={styles.link} href={resumeUrl} fileName={resumeFileName}>
             Resume <Download size={14} aria-hidden="true" />
           </ResumeLink>
+        )}
+        {linkedin && (
+          <a href={linkedin} className={styles.link}>
+            LinkedIn <ArrowUpRight size={14} aria-hidden="true" />
+          </a>
         )}
         <a href={github} className={styles.link}>
           GitHub <ArrowUpRight size={14} aria-hidden="true" />

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { profile } from "./data";
 
-export const alt = `${profile.name} — Software Engineer`;
+export const alt = `${profile.name} — ${profile.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -19,7 +19,7 @@ export default function OpengraphImage() {
         color: "#e8e8e8",
       }}
     >
-      <div style={{ fontSize: 32, color: "#9a9a9a" }}>Software Engineer</div>
+      <div style={{ fontSize: 32, color: "#9a9a9a" }}>{profile.role}</div>
       <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
         <div style={{ fontSize: 148, fontWeight: 700, letterSpacing: -4 }}>{profile.name}</div>
         <div style={{ fontSize: 44, color: "#e8e8e8" }}>{profile.headline}</div>

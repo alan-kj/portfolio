@@ -6,11 +6,13 @@ export type Status = {
 
 export type Profile = {
   name: string;
+  role: string; // the job title shown in the hero, page titles and search results
   status: Status;
   headline: string;
   intro: string;
   about: readonly string[];
   github: string;
+  linkedin: string; // "" hides every LinkedIn link
   email: string;
   resumeUrl: string; // "" hides every resume link
   resumeFileName: string; // name the browser saves a same-site PDF as
@@ -62,6 +64,7 @@ export type Skill = {
 // Edit this file to change the site content.
 export const profile: Profile = {
   name: "Alan K J",
+  role: "Software Engineer",
   status: {
     state: "available",
     label: "Open to opportunities",
@@ -74,6 +77,7 @@ export const profile: Profile = {
     "I like working across the stack, from database design to the interface people actually touch.",
   ],
   github: "https://github.com/alan-kj",
+  linkedin: "https://www.linkedin.com/in/alan-k-j-37b130373/",
   resumeUrl: "/resume.pdf", // a file in public/, or a full URL if hosted elsewhere (Drive, Notion)
   resumeFileName: "Alan_KJ_Resume.pdf",
   email: "hello@example.com", // placeholder: replace with your address; clear it to show GitHub only

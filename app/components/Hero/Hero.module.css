@@ -47,6 +47,20 @@
   vertical-align: -0.05em;
 }
 
+/* The job title: the one line that says what he does, so it sits right under the name. */
+.role {
+  color: var(--accent);
+  font-family: var(--font-code);
+  font-size: var(--step-1);
+  font-weight: 700;
+}
+
+.role::before {
+  margin-right: 1ch;
+  color: var(--muted);
+  content: ">";
+}
+
 .lead {
   max-width: 30ch;
   font-family: var(--font-head);
@@ -146,6 +160,7 @@
     animation: blink 1s steps(1) infinite;
   }
 
+  .role,
   .lead,
   .intro,
   .actions,

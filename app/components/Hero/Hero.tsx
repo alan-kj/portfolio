@@ -4,7 +4,7 @@ import ResumeLink from "../ResumeLink";
 import styles from "./Hero.module.css";
 
 export default function Hero({ profile }: Readonly<{ profile: Profile }>) {
-  const { status, email, github } = profile;
+  const { status, email, github, linkedin } = profile;
 
   return (
     <section id="top" className={styles.hero} aria-labelledby="hero-title">
@@ -15,6 +15,7 @@ export default function Hero({ profile }: Readonly<{ profile: Profile }>) {
         <h1 id="hero-title" className={styles.name}>
           <span className={styles.type}>{profile.name}</span>
         </h1>
+        <p className={styles.role}>{profile.role}</p>
         <p className={styles.lead}>{profile.headline}</p>
         <p className={styles.intro}>{profile.intro}</p>
         <div className={styles.actions}>
@@ -61,6 +62,16 @@ export default function Hero({ profile }: Readonly<{ profile: Profile }>) {
               <a href={github}>{github.replace(/^https?:\/\//, "")}</a>
             </dd>
           </div>
+          {linkedin && (
+            <div>
+              <dt>linkedin</dt>
+              <dd>
+                <a href={linkedin}>
+                  {linkedin.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}
+                </a>
+              </dd>
+            </div>
+          )}
         </dl>
       </div>
     </section>
