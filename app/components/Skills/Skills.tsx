@@ -31,20 +31,19 @@ export default function Skills({ skills, metrics, projects }: SkillsProps) {
 
   return (
     <div className={styles.wrap}>
-      <ul className={styles.bento} aria-label="Skills">
+      <dl className={styles.table} aria-label="Skills">
         {skills.map((skill) => (
-          <li key={skill.group} className={styles.cell} data-reveal>
-            <div className={styles.tile}>
-              <h3 className={styles.group}>{skill.group}</h3>
-              <ul className={styles.chips}>
-                {skill.items.split(",").map((item) => (
-                  <li key={item}>{item.trim()}</li>
-                ))}
-              </ul>
-            </div>
-          </li>
+          <div key={skill.group} className={styles.line} data-reveal>
+            <dt>{skill.group}</dt>
+            <dd>
+              {skill.items
+                .split(",")
+                .map((item) => item.trim())
+                .join(", ")}
+            </dd>
+          </div>
         ))}
-      </ul>
+      </dl>
 
       {figures.length > 0 && (
         <ul className={styles.metrics} aria-label="Highlights">

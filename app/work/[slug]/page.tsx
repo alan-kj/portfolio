@@ -46,7 +46,7 @@ export default async function CaseStudyPage({ params }: CaseStudyProps) {
     <PageTransition>
       <main id="main" className={`wrap ${styles.page}`}>
         <Link href="/#projects" className={styles.back} transitionTypes={["nav-back"]}>
-          <ArrowLeft size={16} aria-hidden="true" /> All work
+          <ArrowLeft size={16} aria-hidden="true" /> ~/work
         </Link>
 
         <header className={styles.intro}>
@@ -54,40 +54,42 @@ export default async function CaseStudyPage({ params }: CaseStudyProps) {
           <p className={styles.summary}>{project.text}</p>
         </header>
 
-        <div className={styles.layout}>
-          <aside className={styles.aside}>
-            <ViewTransition name={`work-${project.slug}`} share="morph" default="none">
-              <div className={styles.preview}>
-                <WorkPreview title={project.title} preview={project.preview} index={index} />
-              </div>
-            </ViewTransition>
-            <dl className={styles.facts}>
-              <div>
-                <dt>Year</dt>
-                <dd>{project.year}</dd>
-              </div>
-              <div>
-                <dt>Role</dt>
-                <dd>{project.role}</dd>
-              </div>
-              <div>
-                <dt>Built with</dt>
-                <dd>{project.tags.join(", ")}</dd>
-              </div>
-            </dl>
-            <a className={styles.visit} href={project.href}>
-              View project <ArrowUpRight size={16} aria-hidden="true" />
-            </a>
-          </aside>
-
-          <div className={styles.sections}>
-            {project.sections?.map((section) => (
-              <section key={section.heading} className={styles.section}>
-                <h2>{section.heading}</h2>
-                <p>{section.body}</p>
-              </section>
-            ))}
+        <dl className={styles.facts}>
+          <div>
+            <dt>year</dt>
+            <dd>{project.year}</dd>
           </div>
+          <div>
+            <dt>role</dt>
+            <dd>{project.role}</dd>
+          </div>
+          <div>
+            <dt>stack</dt>
+            <dd>{project.tags.join(", ")}</dd>
+          </div>
+          <div>
+            <dt>source</dt>
+            <dd>
+              <a className={styles.visit} href={project.href}>
+                View project <ArrowUpRight size={14} aria-hidden="true" />
+              </a>
+            </dd>
+          </div>
+        </dl>
+
+        <ViewTransition name={`work-${project.slug}`} share="morph" default="none">
+          <div className={styles.preview}>
+            <WorkPreview title={project.title} preview={project.preview} index={index} />
+          </div>
+        </ViewTransition>
+
+        <div className={styles.sections}>
+          {project.sections?.map((section) => (
+            <section key={section.heading} className={styles.section}>
+              <h2>{section.heading}</h2>
+              <p>{section.body}</p>
+            </section>
+          ))}
         </div>
 
         {next && (

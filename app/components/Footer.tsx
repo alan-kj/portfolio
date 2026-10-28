@@ -12,11 +12,11 @@ type FooterProps = Readonly<{
 
 export default function Footer({ name, github, resumeUrl, resumeFileName }: FooterProps) {
   return (
-    <footer className={`wrap ${styles.footer}`}>
+    <footer className={styles.footer}>
       <Link href="/#top" className={styles.brand}>
         {name}
       </Link>
-      <span>© {new Date().getFullYear()}</span>
+      <span className={styles.year}>© {new Date().getFullYear()}</span>
       <div className={styles.links}>
         {resumeUrl && (
           <ResumeLink className={styles.link} href={resumeUrl} fileName={resumeFileName}>

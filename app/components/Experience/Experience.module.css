@@ -1,11 +1,11 @@
 .list {
   display: grid;
-  margin-top: 48px;
+  margin-top: 32px;
 }
 
-/* The second list (education) sits under the work timeline with its own small heading. */
+/* The second list (education) sits under the work history with its own small heading. */
 .education {
-  margin-top: clamp(64px, 8vw, 96px);
+  margin-top: clamp(48px, 6vw, 72px);
 }
 
 .subhead {
@@ -17,94 +17,76 @@
 }
 
 .education .list {
-  margin-top: 32px;
+  margin-top: 24px;
 }
 
-/* The left border is the timeline rail; each entry hangs a marker on it. */
+/* Each entry reads like a `git log` record: a dated header rule, then the body. */
 .item {
-  position: relative;
   display: grid;
-  gap: 12px;
-  padding: 0 0 48px 28px;
-  border-left: 1px solid var(--line-strong);
+  gap: 8px;
+  padding-block: 24px;
+  border-top: 1px solid var(--line-strong);
 }
 
 .item:last-child {
-  padding-bottom: 0;
-}
-
-.item::before {
-  position: absolute;
-  top: 0.45em;
-  left: -5px;
-  width: 9px;
-  height: 9px;
-  border: 1px solid var(--line-strong);
-  background: var(--ink);
-  content: "";
-}
-
-/* The first entry is the current one. */
-.item:first-child::before {
-  border-color: var(--accent);
-  background: var(--accent);
+  border-bottom: 1px solid var(--line-strong);
 }
 
 .period {
-  color: var(--muted);
+  color: var(--accent);
   font-family: var(--font-code);
   font-size: var(--step-s);
 }
 
+.period::before {
+  content: "commit ";
+  color: var(--muted);
+}
+
 .role {
   font-family: var(--font-head);
-  font-size: var(--step-2);
+  font-size: var(--step-1);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.2;
 }
 
 .org {
-  margin-top: 6px;
-  font-weight: 600;
+  margin-top: 4px;
+  color: var(--signal);
+  font-family: var(--font-code);
+  font-size: var(--step-s);
 }
 
 .summary {
-  max-width: 56ch;
+  max-width: 60ch;
   margin-top: 12px;
   color: var(--muted);
 }
 
+/* Impact lines are shown as added lines in a diff. */
 .impact {
   display: grid;
-  max-width: 60ch;
-  gap: 10px;
-  margin-top: 20px;
+  max-width: 64ch;
+  gap: 6px;
+  margin-top: 16px;
 }
 
 .impact li {
   position: relative;
-  padding-left: 20px;
+  padding-left: 2ch;
 }
 
 .impact li::before {
   position: absolute;
-  top: 0.7em;
   left: 0;
-  width: 8px;
-  height: 2px;
-  background: var(--accent);
-  content: "";
+  color: var(--signal);
+  content: "+";
 }
 
 @media (min-width: 900px) {
   .item {
-    grid-template-columns: 11rem minmax(0, 1fr);
+    grid-template-columns: 13rem minmax(0, 1fr);
     gap: 32px;
-    padding-left: 40px;
-  }
-
-  .period {
-    padding-top: 0.5em;
   }
 }

@@ -73,9 +73,16 @@
     outline-offset: 2px;
   }
 
+  /* Content hugs the rail like an editor buffer instead of floating in the middle. */
   .wrap {
     width: min(var(--page-max), 100% - var(--gutter) * 2);
-    margin-inline: auto;
+    margin-inline: var(--gutter) auto;
+  }
+
+  @media (min-width: 900px) {
+    body {
+      padding-left: var(--rail-w);
+    }
   }
 
   .sr-only {
@@ -106,14 +113,14 @@
 
   /* Shared section scaffolding */
   .band {
-    padding-block: clamp(72px, 10vw, 120px);
+    padding-block: clamp(48px, 7vw, 88px);
     border-top: 1px solid var(--line);
   }
 
   .section-title {
-    max-width: 20ch;
+    max-width: 28ch;
     font-family: var(--font-head);
-    font-size: var(--step-3);
+    font-size: var(--step-2);
     font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.1;

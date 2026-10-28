@@ -1,26 +1,31 @@
 .text {
-  max-width: 44ch;
-  margin-top: 20px;
+  max-width: 52ch;
+  margin-top: 16px;
   color: var(--muted);
-  font-size: var(--step-1);
 }
 
-/* The address is the call to action: set large, underlined, turning amber on hover. */
+/* The address is the call to action, set as the line you would type into a mail command. */
 .email {
   display: inline-flex;
   align-items: flex-start;
   gap: 8px;
-  margin-top: clamp(32px, 6vw, 64px);
+  margin-top: clamp(24px, 4vw, 40px);
   font-family: var(--font-head);
-  font-size: clamp(1.1rem, 5vw, 3.25rem);
+  font-size: clamp(1.1rem, 4.5vw, 2.5rem);
   font-weight: 700;
   letter-spacing: -0.03em;
-  line-height: 1.1;
+  line-height: 1.15;
   overflow-wrap: anywhere;
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 0.2em;
   transition: color 100ms linear;
+}
+
+.email::before {
+  color: var(--signal);
+  content: "$";
+  text-decoration: none;
 }
 
 .email:hover,
@@ -39,7 +44,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: clamp(28px, 4vw, 40px);
+  margin-top: clamp(24px, 4vw, 32px);
 }
 
 /* Reserve room for the longest label so the button does not jump when it says "Copied". */

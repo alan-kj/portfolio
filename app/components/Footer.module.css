@@ -1,19 +1,30 @@
+/* A status line, like the bottom bar of an editor. */
 .footer {
   display: flex;
-  min-height: 96px;
-  align-items: center;
+  min-height: 40px;
+  align-items: stretch;
   justify-content: space-between;
   gap: 18px;
-  border-top: 1px solid var(--line);
+  padding-inline: 0 var(--gutter);
+  border-top: 1px solid var(--line-strong);
+  background: var(--panel);
   color: var(--muted);
+  font-family: var(--font-code);
   font-size: var(--step-s);
 }
 
 .brand {
-  color: var(--text);
-  font-family: var(--font-head);
+  display: inline-flex;
+  align-items: center;
+  padding-inline: var(--gutter) 14px;
+  background: var(--accent);
+  color: var(--accent-ink);
   font-weight: 700;
   text-decoration: none;
+}
+
+.year {
+  align-self: center;
 }
 
 .links {
@@ -32,4 +43,10 @@
 
 .link:hover {
   color: var(--accent);
+}
+
+@media (max-width: 560px) {
+  .year {
+    display: none;
+  }
 }

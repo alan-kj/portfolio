@@ -1,48 +1,67 @@
-import { ArrowDown, CodeXml, FileText } from "lucide-react";
+import { ArrowDown, FileText } from "lucide-react";
 import type { Profile } from "../../data";
 import ResumeLink from "../ResumeLink";
 import styles from "./Hero.module.css";
-import StatusPill from "./StatusPill";
 
 export default function Hero({ profile }: Readonly<{ profile: Profile }>) {
-  const words = profile.name.split(" ");
+  const { status, email, github } = profile;
 
   return (
     <section id="top" className={styles.hero} aria-labelledby="hero-title">
-      <StatusPill status={profile.status} />
-
-      <h1 id="hero-title" className={styles.wordmark}>
-        {words.map((word, index) => (
-          <span key={`${word}-${index}`}>
-            <span className={styles.word}>
-              <span className={styles.rise}>{word}</span>
-            </span>{" "}
-          </span>
-        ))}
-      </h1>
-
-      <div className={styles.lower}>
+      <div className={styles.main}>
+        <p className={styles.prompt} aria-hidden="true">
+          whoami
+        </p>
+        <h1 id="hero-title" className={styles.name}>
+          <span className={styles.type}>{profile.name}</span>
+        </h1>
         <p className={styles.lead}>{profile.headline}</p>
-        <div className={styles.side}>
-          <p className={styles.intro}>{profile.intro}</p>
-          <div className={styles.actions}>
-            <a className="btn btn-primary" href="#projects">
-              Explore my work <ArrowDown className="btn-nudge" size={16} aria-hidden="true" />
-            </a>
-            <a className="btn btn-secondary" href={profile.github}>
-              <CodeXml size={16} aria-hidden="true" /> GitHub
-            </a>
-            {profile.resumeUrl && (
-              <ResumeLink
-                className="btn btn-secondary"
-                href={profile.resumeUrl}
-                fileName={profile.resumeFileName}
-              >
-                <FileText className="btn-nudge" size={16} aria-hidden="true" /> Resume
-              </ResumeLink>
-            )}
-          </div>
+        <p className={styles.intro}>{profile.intro}</p>
+        <div className={styles.actions}>
+          <a className="btn btn-primary" href="#projects">
+            Explore my work <ArrowDown className="btn-nudge" size={16} aria-hidden="true" />
+          </a>
+          {profile.resumeUrl && (
+            <ResumeLink
+              className="btn btn-secondary"
+              href={profile.resumeUrl}
+              fileName={profile.resumeFileName}
+            >
+              <FileText className="btn-nudge" size={16} aria-hidden="true" /> Resume
+            </ResumeLink>
+          )}
         </div>
+      </div>
+
+      <div className={styles.window}>
+        <p className={styles.title}>profile</p>
+        <dl className={styles.facts}>
+          <div>
+            <dt>status</dt>
+            <dd data-state={status.state}>
+              <span className={styles.dot} aria-hidden="true" />
+              {status.label}
+            </dd>
+          </div>
+          <div>
+            <dt>focus</dt>
+            <dd>{status.focus}</dd>
+          </div>
+          {email && (
+            <div>
+              <dt>mail</dt>
+              <dd>
+                <a href={`mailto:${email}`}>{email}</a>
+              </dd>
+            </div>
+          )}
+          <div>
+            <dt>source</dt>
+            <dd>
+              <a href={github}>{github.replace(/^https?:\/\//, "")}</a>
+            </dd>
+          </div>
+        </dl>
       </div>
     </section>
   );

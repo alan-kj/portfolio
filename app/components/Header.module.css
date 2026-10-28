@@ -1,25 +1,22 @@
+/* Below 900px this is a sticky top bar; from 900px it is a fixed side rail. */
 .header {
   position: sticky;
   view-transition-name: site-header;
   z-index: 50;
   top: 0;
-  display: flex;
-  justify-content: center;
-  padding-inline: var(--gutter);
   border-bottom: 1px solid var(--line);
   background: var(--ink);
 }
 
 .bar {
   display: flex;
-  width: min(var(--page-max), 100%);
   min-height: var(--header-h);
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  padding-inline: var(--gutter);
 }
 
-/* A shell prompt in front of the name: user@host:~$ */
 .brand {
   font-family: var(--font-head);
   font-size: var(--step-s);
@@ -35,16 +32,17 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: clamp(2px, 1vw, 8px);
+  gap: 4px;
   margin-left: auto;
 }
 
+/* Nav entries read like paths: ./work */
 .link,
 .cta {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 6px 12px;
+  padding: 6px 10px;
   border: 1px solid transparent;
   color: var(--muted);
   font-family: var(--font-head);
@@ -55,6 +53,10 @@
     color 100ms linear;
 }
 
+.link::before {
+  content: "./";
+}
+
 .link:hover,
 .link[aria-current="location"] {
   color: var(--text);
@@ -62,6 +64,7 @@
 
 .link[aria-current="location"] {
   border-color: var(--line-strong);
+  color: var(--accent);
 }
 
 .cta {
@@ -71,11 +74,7 @@
   font-weight: 700;
 }
 
-.cta:hover {
-  background: var(--ink);
-  color: var(--accent);
-}
-
+.cta:hover,
 .cta[aria-current="location"] {
   background: var(--ink);
   color: var(--accent);
@@ -88,5 +87,56 @@
 
   .cta svg {
     display: none;
+  }
+}
+
+@media (min-width: 900px) {
+  .header {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: var(--rail-w);
+    border-right: 1px solid var(--line);
+    border-bottom: 0;
+  }
+
+  .bar {
+    height: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    padding: 28px 20px;
+  }
+
+  .brand {
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+    font-size: var(--step-0);
+  }
+
+  .nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    margin: 20px 0 0;
+  }
+
+  .link,
+  .cta {
+    padding: 8px 10px;
+  }
+
+  .link[aria-current="location"]::before {
+    content: "> ";
+  }
+
+  .cta {
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .bar > :last-child {
+    align-self: flex-start;
+    margin-top: auto;
   }
 }

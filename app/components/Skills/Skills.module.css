@@ -1,69 +1,52 @@
 .wrap {
   display: grid;
-  gap: 12px;
+  gap: 32px;
 }
 
-.bento {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 12px;
-}
-
-.cell {
-  min-width: 0;
-}
-
-.tile {
-  display: flex;
-  height: 100%;
-  min-height: 160px;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 24px;
+/* Skills are a key and value table, one ruled line per group. */
+.table {
   border: 1px solid var(--line-strong);
   background: var(--panel);
-  transition: border-color 100ms linear;
 }
 
-.tile:hover {
-  border-color: var(--accent);
+.line {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
 }
 
-.group {
-  font-family: var(--font-head);
-  font-size: var(--step-1);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+.line:last-child {
+  border-bottom: 0;
 }
 
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.chips li {
-  padding: 2px 8px;
-  border: 1px solid var(--line-strong);
+.line dt {
+  color: var(--accent);
   font-family: var(--font-code);
+  font-size: var(--step-s);
+  font-weight: 700;
+}
+
+.line dd {
   font-size: var(--step-s);
 }
 
+/* Figures sit in a strip of cells that share their borders. */
 .metrics {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
-  gap: 12px;
+  border-top: 1px solid var(--line-strong);
+  border-left: 1px solid var(--line-strong);
 }
 
 .metric {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 16px;
-  padding: 20px 24px;
-  border: 1px solid var(--line);
+  gap: 12px;
+  padding: 20px;
+  border-right: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
 }
 
 .value {
@@ -81,31 +64,9 @@
   font-size: var(--step-s);
 }
 
-/* Designed for four skill groups; any extras flow in as smaller tiles. */
-@media (min-width: 900px) {
-  .bento {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-  }
-
-  .cell {
-    grid-column: span 4;
-  }
-
-  .cell:nth-child(1) {
-    grid-column: span 6;
-    grid-row: span 2;
-  }
-
-  .cell:nth-child(2),
-  .cell:nth-child(3) {
-    grid-column: span 3;
-  }
-
-  .cell:nth-child(4) {
-    grid-column: span 6;
-  }
-
-  .cell:nth-child(1) .group {
-    font-size: var(--step-2);
+@media (min-width: 700px) {
+  .line {
+    grid-template-columns: 10rem minmax(0, 1fr);
+    gap: 24px;
   }
 }

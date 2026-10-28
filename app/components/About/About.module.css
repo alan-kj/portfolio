@@ -1,20 +1,18 @@
 .intro {
   display: grid;
   gap: 24px;
-  margin-bottom: 48px;
+  margin-bottom: 40px;
 }
 
 .copy {
   display: grid;
-  max-width: 56ch;
+  max-width: 60ch;
   gap: 16px;
   color: var(--muted);
 }
 
-@media (min-width: 900px) {
-  .intro {
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    align-items: end;
-    gap: clamp(48px, 7vw, 112px);
-  }
+/* Paragraphs carry a quote marker, like text in a README. */
+.copy p {
+  padding-left: 2ch;
+  border-left: 2px solid var(--line-strong);
 }

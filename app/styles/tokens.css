@@ -28,12 +28,20 @@
 
     /* Space */
     --gutter: clamp(16px, 4vw, 48px);
-    --page-max: 1240px;
+    --page-max: 1040px;
+    --rail-w: 232px;
 
     /* Motion */
     --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
     --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
     --header-h: 56px;
+  }
+
+  /* From this width the header becomes a fixed side rail, so nothing sticks to the top. */
+  @media (min-width: 900px) {
+    :root {
+      --header-h: 0px;
+    }
   }
 
   :root[data-theme="light"] {

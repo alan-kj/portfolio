@@ -4,71 +4,55 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 12px 48px;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .range {
-  color: var(--muted);
-  font-size: var(--step-s);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 16px;
-}
-
-.item {
-  min-width: 0;
-}
-
-.card {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  overflow: hidden;
-  border: 1px solid var(--line-strong);
-  background: var(--panel);
-  transition: border-color 100ms linear;
-}
-
-.card:hover,
-.card:focus-within {
-  border-color: var(--accent);
-}
-
-.preview {
-  position: relative;
-  height: 160px;
-  flex: none;
-  overflow: hidden;
-  border-bottom: 1px solid var(--line-strong);
-  background: var(--ink);
-}
-
-.image {
-  object-fit: cover;
-}
-
-.body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: 10px;
-  padding: 20px;
-}
-
-.meta {
-  display: flex;
-  gap: 12px;
   color: var(--muted);
   font-family: var(--font-code);
   font-size: var(--step-s);
 }
 
-.meta span + span {
-  padding-left: 12px;
-  border-left: 1px solid var(--line-strong);
+/* The listing reads like `ls -l`: a column header, then one ruled row per project. */
+.columns {
+  display: none;
+  padding: 8px 12px;
+  border-block: 1px solid var(--line-strong);
+  background: var(--panel);
+  color: var(--muted);
+  font-family: var(--font-code);
+  font-size: var(--step-s);
+}
+
+.list {
+  display: grid;
+}
+
+.entry {
+  position: relative;
+  display: grid;
+  gap: 6px;
+  padding: 16px 12px;
+  border-bottom: 1px solid var(--line);
+  transition: background-color 100ms linear;
+}
+
+.entry:hover,
+.entry:focus-within {
+  background: var(--panel-hover);
+}
+
+.year,
+.role {
+  color: var(--muted);
+  font-family: var(--font-code);
+  font-size: var(--step-s);
+}
+
+.main {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
 }
 
 .title {
@@ -79,61 +63,77 @@
   line-height: 1.2;
 }
 
-/* The heading link stretches over the whole card so the card is one target. */
-.cardLink {
+/* The heading link stretches over the whole row so the row is one target. */
+.rowLink {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   text-decoration: none;
 }
 
-.cardLink::after {
+.rowLink::after {
   position: absolute;
   inset: 0;
   content: "";
 }
 
-.cardLink:focus-visible {
+.rowLink:focus-visible {
   outline: none;
 }
 
-.cardLink:focus-visible::after {
+.rowLink:focus-visible::after {
   outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline-offset: -2px;
+}
+
+.entry:hover .rowLink,
+.entry:focus-within .rowLink {
+  color: var(--accent);
 }
 
 .arrow {
   flex: none;
   color: var(--muted);
-  transition: color 100ms linear;
 }
 
-.card:hover .arrow,
-.card:focus-within .arrow {
+.entry:hover .arrow,
+.entry:focus-within .arrow {
   color: var(--accent);
 }
 
 .text {
-  max-width: 44ch;
+  max-width: 52ch;
   color: var(--muted);
+  font-size: var(--step-s);
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: auto;
-  padding-top: 14px;
-}
-
-.tags li {
-  padding: 2px 8px;
-  border: 1px solid var(--line-strong);
+  gap: 4px 12px;
+  color: var(--muted);
   font-family: var(--font-code);
   font-size: var(--step-s);
 }
 
-/* Preview motifs: abstract stand-ins that react to hover and focus. */
+@media (min-width: 900px) {
+  .columns,
+  .entry {
+    grid-template-columns: 4rem minmax(0, 1fr) 7.5rem 11rem;
+    gap: 20px;
+  }
+
+  .columns {
+    display: grid;
+  }
+
+  .entry {
+    align-items: start;
+    padding-block: 18px;
+  }
+}
+
+/* Preview motifs: abstract stand-ins shown on case-study pages without an image. */
 .motif {
   width: 100%;
   height: 100%;
@@ -152,7 +152,6 @@
   fill: none;
   stroke: var(--line-strong);
   stroke-width: 1.5;
-  transition: stroke 100ms linear;
 }
 
 .chevron {
@@ -167,7 +166,6 @@
 .node,
 .bar {
   transform-box: fill-box;
-  transition: transform 150ms steps(3);
 }
 
 .bar {
@@ -178,105 +176,14 @@
   transform-origin: center;
 }
 
-.card:hover .row,
-.card:focus-within .row {
-  transform: translateX(10px);
-}
-
-.card:hover .node,
-.card:focus-within .node {
-  transform: scale(1.3);
-}
-
-.card:hover .link,
-.card:focus-within .link {
-  stroke: var(--accent);
-}
-
-.card:hover .bar,
-.card:focus-within .bar {
-  transform: scaleY(1.22);
-}
-
-.row:nth-child(2),
-.bar:nth-of-type(2) {
-  transition-delay: 40ms;
-}
-
-.row:nth-child(3),
-.bar:nth-of-type(3) {
-  transition-delay: 80ms;
-}
-
-.row:nth-child(4),
-.bar:nth-of-type(4) {
-  transition-delay: 120ms;
-}
-
-.row:nth-child(5),
-.bar:nth-of-type(5) {
-  transition-delay: 160ms;
-}
-
-.card:hover .caret,
-.card:focus-within .caret {
-  animation: caret 900ms steps(1) infinite;
+@media (prefers-reduced-motion: no-preference) {
+  .caret {
+    animation: caret 900ms steps(1) infinite;
+  }
 }
 
 @keyframes caret {
   50% {
     opacity: 0;
-  }
-}
-
-@media (min-width: 700px) {
-  .wide .card {
-    flex-direction: row;
-  }
-
-  .wide .preview {
-    width: 42%;
-    height: auto;
-    min-height: 190px;
-    border-right: 1px solid var(--line-strong);
-    border-bottom: 0;
-  }
-}
-
-@media (min-width: 900px) {
-  .grid {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-  }
-
-  .feature {
-    grid-column: span 7;
-    grid-row: span 2;
-  }
-
-  .side {
-    grid-column: span 5;
-  }
-
-  .wide {
-    grid-column: span 12;
-  }
-
-  .feature .preview {
-    height: auto;
-    min-height: 280px;
-    flex: 1;
-  }
-
-  .feature .body {
-    flex: none;
-    padding: 28px;
-  }
-
-  .feature .title {
-    font-size: var(--step-2);
-  }
-
-  .side .preview {
-    height: 110px;
   }
 }
